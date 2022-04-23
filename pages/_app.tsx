@@ -4,10 +4,10 @@ import * as React from 'react'
 import * as Fathom from 'fathom-client'
 import type { AppProps } from 'next/app'
 import { useRouter } from 'next/router'
-import { ThemeProvider } from 'next-themes'
+import { ChakraProvider } from '@chakra-ui/react'
 
-import { isServer, fathomId, fathomConfig } from 'lib/config'
-import { bootstrap } from 'lib/bootstrap-client'
+import { isServer, fathomId, fathomConfig } from '~/lib/config'
+import { bootstrap } from '~/lib/bootstrap-client'
 
 if (!isServer) {
   bootstrap()
@@ -35,8 +35,8 @@ export default function App({ Component, pageProps }: AppProps) {
   }, [router.events])
 
   return (
-    <ThemeProvider disableTransitionOnChange>
+    <ChakraProvider>
       <Component {...pageProps} />
-    </ThemeProvider>
+    </ChakraProvider>
   )
 }

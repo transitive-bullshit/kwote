@@ -5,31 +5,61 @@
   justify-content: center;
   align-items: center;
 
-  padding: 48px;
-  background: url('/images/bg0.jpg') no-repeat;
+  min-width: 300px;
+  max-width: 1200px;
+
+  background-repeat: no-repeat;
   background-size: cover;
 }
 
 .body {
   position: relative;
   padding: 1rem;
-  min-width: 240px;
-  max-width: 1024px;
+  flex: 1;
   background: #fff;
   border-radius: 12px;
-  line-height: 1.2;
+  line-height: 1.3;
+  box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.05), 0px 1px 4px rgba(0, 0, 0, 0.15);
 }
 
 .input {
+  min-width: 256px;
   min-height: 64px;
   resize: none;
   tab-size: 1;
   outline: 0;
 }
 
+.input *::selection {
+  background: rgba(45, 170, 219, 0.3);
+}
+
 .input p {
   all: unset;
   margin: 0 0 1em;
+}
+
+.input span {
+  position: relative;
+  z-index: 1;
+}
+
+.input em,
+.input strong {
+  border-radius: 0.35em;
+  padding: 0.1em 0.25em;
+  margin: -0.1em -0.25em;
+  box-decoration-break: clone;
+}
+
+.input em {
+  background: #fdf59d;
+  font-style: normal;
+}
+
+.input strong {
+  background: #bbebff;
+  font-weight: normal;
 }
 
 .placeholder {
@@ -39,7 +69,6 @@
   text-overflow: ellipsis;
   top: 1rem;
   left: 1rem;
-  font-size: 15px;
   user-select: none;
   pointer-events: none;
 }

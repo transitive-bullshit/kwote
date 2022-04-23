@@ -18,15 +18,21 @@
     "test:prettier": "prettier '**/*.{js,jsx,ts,tsx}' --check"
   },
   "dependencies": {
+    "@chakra-ui/icons": "^1.1.7",
+    "@chakra-ui/react": "^1.8.8",
+    "@emotion/react": "^11",
+    "@emotion/styled": "^11",
     "@lexical/react": "^0.2.4",
     "clsx": "^1.1.1",
     "dom-to-image": "^2.6.0",
     "fathom-client": "^3.4.1",
+    "framer-motion": "^6",
     "lexical": "^0.2.4",
     "next": "12.1.5",
-    "next-themes": "^0.1.1",
     "react": "18.0.0",
-    "react-dom": "18.0.0"
+    "react-dom": "18.0.0",
+    "react-use": "^17.3.2",
+    "zustand": "^4.0.0-rc.0"
   },
   "devDependencies": {
     "@types/node": "17.0.25",

@@ -1,8 +1,10 @@
-# Kqote
+# Kwote
 
 > Create beautiful quotes that people will remember.
 
 TODO
+
+- use https://github.com/bubkoo/html-to-image or https://github.com/niklasvh/html2canvas?
 
 ## License
 

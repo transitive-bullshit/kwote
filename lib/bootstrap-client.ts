@@ -8,6 +8,6 @@ export function bootstrap() {
    ██║   ██║  ██║██║  ██║██║ ╚████║███████║██║   ██║   ██║ ╚████╔╝ ███████╗    ██████╔╝███████║
    ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝╚══════╝╚═╝   ╚═╝   ╚═╝  ╚═══╝  ╚══════╝    ╚═════╝ ╚══════╝
                                                                                                
-   This site is built by Travis Fischer. https://transitivebullsh.it
+   This webapp was built by https://transitivebullsh.it
 `)
 }

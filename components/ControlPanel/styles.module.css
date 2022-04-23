@@ -1,0 +1,10 @@
+.container {
+  display: flex;
+  padding: 1rem;
+}
+
+.options {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
