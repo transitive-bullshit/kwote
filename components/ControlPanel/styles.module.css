@@ -8,3 +8,9 @@
   flex-direction: row;
   gap: 1rem;
 }
+
+@media only screen and (max-width: 900px) {
+  .options {
+    flex-direction: column;
+  }
+}
