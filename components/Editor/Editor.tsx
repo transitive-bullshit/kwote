@@ -14,6 +14,7 @@ import { GoogleFont } from '../GoogleFont/GoogleFont'
 
 const lexicalEditorConfig = {
   onError(err: Error) {
+    console.error('lexical error', err)
     throw err
   }
 }
@@ -35,7 +36,9 @@ function AutoFocusPlugin() {
 }
 
 export const Editor: React.FC<{ className?: string }> = ({ className }) => {
+  const containerRef = React.useRef<HTMLDivElement>(null)
   const kwoteEditorConfig = useEditorStore((state) => state.config)
+  const setKwoteEditorContainer = useEditorStore((state) => state.setContainer)
 
   // const [serializedInitialEditorState, setSerializedInitialEditorState] =
   //   useLocalStorage<string | null>('kwote-editor-state', null)
@@ -70,11 +73,25 @@ export const Editor: React.FC<{ className?: string }> = ({ className }) => {
     [kwoteEditorConfig]
   )
 
+  React.useEffect(() => {
+    if (containerRef.current) {
+      setKwoteEditorContainer(containerRef.current)
+    }
+
+    return () => {
+      setKwoteEditorContainer(null)
+    }
+  }, [containerRef, setKwoteEditorContainer])
+
   return (
     <>
       <GoogleFont fontFamily={kwoteEditorConfig.fontFamily} />
 
-      <div className={cs(styles.container, className)} style={containerStyle}>
+      <div
+        className={cs(styles.container, className)}
+        style={containerStyle}
+        ref={containerRef}
+      >
         <LexicalComposer initialConfig={lexicalEditorConfig}>
           <div className={styles.body}>
             <RichTextPlugin

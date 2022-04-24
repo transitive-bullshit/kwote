@@ -19,7 +19,7 @@ export const GoogleFont: React.FC<{
 
   return (
     <Head>
-      <link rel='stylesheet' href={googleFontsLink} />
+      <link rel='stylesheet' href={googleFontsLink} crossOrigin='anonymous' />
     </Head>
   )
 }

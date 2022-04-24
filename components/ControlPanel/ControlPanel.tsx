@@ -1,5 +1,7 @@
 import * as React from 'react'
 import cs from 'clsx'
+import { toPng, toJpeg, toSvg } from 'html-to-image'
+import { toast } from 'react-hot-toast'
 import { Select } from '@chakra-ui/react'
 import {
   NumberInput,
@@ -76,10 +78,69 @@ const fontFamilies = [
   'Mukta'
 ].sort()
 
+const filename = 'kwote'
+
 export const ControlPanel: React.FC<{ className?: string }> = ({
   className
 }) => {
-  const { config, updateConfig } = useEditorStore()
+  const { config, updateConfig, container } = useEditorStore()
+
+  const onClickSaveToPNG = React.useCallback(() => {
+    if (!container) {
+      return
+    }
+
+    toPng(container, { cacheBust: true })
+      .then((dataUrl: string) => {
+        const link = document.createElement('a')
+        link.download = `${filename}.png`
+        link.href = dataUrl
+        link.click()
+        toast.success('Saved png image')
+      })
+      .catch((err: Error) => {
+        console.error(err)
+        toast.error('Error exporting image. Check the console for details')
+      })
+  }, [container])
+
+  const onClickSaveToJPEG = React.useCallback(() => {
+    if (!container) {
+      return
+    }
+
+    toJpeg(container, { cacheBust: true, quality: 0.9 })
+      .then((dataUrl: string) => {
+        const link = document.createElement('a')
+        link.download = `${filename}.jpg`
+        link.href = dataUrl
+        link.click()
+        toast.success('Saved png image')
+      })
+      .catch((err: Error) => {
+        console.error(err)
+        toast.error('Error exporting image. Check the console for details')
+      })
+  }, [container])
+
+  const onClickSaveToSVG = React.useCallback(() => {
+    if (!container) {
+      return
+    }
+
+    toSvg(container, { cacheBust: true })
+      .then((dataUrl: string) => {
+        const link = document.createElement('a')
+        link.download = `${filename}.svg`
+        link.href = dataUrl
+        link.click()
+        toast.success('Saved svg image')
+      })
+      .catch((err: Error) => {
+        console.error(err)
+        toast.error('Error exporting image. Check the console for details')
+      })
+  }, [container])
 
   return (
     <Paper className={cs(styles.container, className)}>
@@ -186,9 +247,9 @@ export const ControlPanel: React.FC<{ className?: string }> = ({
 
             <Portal>
               <MenuList>
-                <MenuItem>Save png</MenuItem>
-                <MenuItem>Save jpeg</MenuItem>
-                <MenuItem>Save svg</MenuItem>
+                <MenuItem onClick={onClickSaveToPNG}>Save png</MenuItem>
+                <MenuItem onClick={onClickSaveToJPEG}>Save jpeg</MenuItem>
+                <MenuItem onClick={onClickSaveToSVG}>Save svg</MenuItem>
                 <MenuDivider />
                 <MenuItem>Copy png</MenuItem>
                 <MenuItem>Copy URL</MenuItem>
