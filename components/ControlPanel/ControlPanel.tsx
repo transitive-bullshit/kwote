@@ -16,9 +16,6 @@ import {
   MenuButton,
   MenuList,
   MenuItem,
-  MenuItemOption,
-  MenuGroup,
-  MenuOptionGroup,
   MenuDivider
 } from '@chakra-ui/react'
 import { ChevronDownIcon } from '@chakra-ui/icons'
@@ -137,6 +134,7 @@ export const ControlPanel: React.FC<{ className?: string }> = ({
             value={`${config.fontSize}`}
             min={8}
             max={128}
+            size='sm'
             onChange={(value) => {
               const parsedValue = parseInt(value)
               if (parsedValue) {
@@ -160,6 +158,7 @@ export const ControlPanel: React.FC<{ className?: string }> = ({
             value={`${config.padding}`}
             min={-1}
             max={64}
+            size='sm'
             onChange={(value) => {
               const parsedValue = parseInt(value)
               if (parsedValue) {
@@ -190,6 +189,7 @@ export const ControlPanel: React.FC<{ className?: string }> = ({
                 <MenuItem>Save png</MenuItem>
                 <MenuItem>Save jpeg</MenuItem>
                 <MenuItem>Save svg</MenuItem>
+                <MenuDivider />
                 <MenuItem>Copy png</MenuItem>
                 <MenuItem>Copy URL</MenuItem>
               </MenuList>
