@@ -19,3 +19,6 @@ export const fathomConfig = fathomId
       excludedDomains: ['localhost', 'localhost:3000']
     }
   : undefined
+
+export const MIN_FRAME_WIDTH = 360
+export const MAX_FRAME_WIDTH = 1200

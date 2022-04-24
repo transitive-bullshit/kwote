@@ -4,12 +4,11 @@
 
 ## TODO
 
-- improve highlighting UX
 - support resizing
+- improve highlighting UX
 - support import / export from url
 - store config and editor state in localstorage
 - add favicon + logo
-- page meta
 - add examples
 - docs
 

@@ -9,8 +9,6 @@ import {
   NumberInputStepper,
   NumberIncrementStepper,
   NumberDecrementStepper,
-  FormControl,
-  FormLabel,
   Divider,
   Button,
   Portal,

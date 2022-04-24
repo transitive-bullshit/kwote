@@ -38,8 +38,8 @@
     flex: 0.8;
   }
 
-  .optionExportMenu button {
-    height: 100%;
+  .optionExportMenu {
+    justify-content: center;
   }
 }
 
