@@ -24,7 +24,6 @@
     "@emotion/styled": "^11",
     "@lexical/react": "^0.2.4",
     "clsx": "^1.1.1",
-    "dom-to-image": "^2.6.0",
     "fathom-client": "^3.4.1",
     "framer-motion": "^6",
     "html-to-image": "^1.9.0",
