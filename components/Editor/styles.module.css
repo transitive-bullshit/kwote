@@ -23,7 +23,7 @@
 .input {
   padding: 1rem;
   min-width: 300px;
-  min-height: 96px;
+  min-height: calc(max(96px, 4em));
   resize: none;
   tab-size: 1;
   outline: 0;
