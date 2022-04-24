@@ -8,6 +8,7 @@ import { GitHubShareButton } from '~/components/GitHubShareButton/GitHubShareBut
 import { Footer } from '~/components/Footer/Footer'
 
 import styles from './styles.module.css'
+import { PageHead } from '../PageHead/PageHead'
 
 const toastOptions: DefaultToastOptions = {
   success: {
@@ -20,18 +21,22 @@ const toastOptions: DefaultToastOptions = {
 
 export const HomePage: React.FC = () => {
   return (
-    <div className={styles.container}>
-      <GitHubShareButton repoUrl={githubRepoUrl} />
+    <>
+      <PageHead />
 
-      <main className={styles.main}>
-        <Editor className={styles.editor} />
-      </main>
+      <div className={styles.container}>
+        <GitHubShareButton repoUrl={githubRepoUrl} />
 
-      <ControlPanel className={styles.controlPanel} />
+        <main className={styles.main}>
+          <Editor className={styles.editor} />
+        </main>
 
-      <Toaster position='top-right' toastOptions={toastOptions} />
+        <ControlPanel className={styles.controlPanel} />
 
-      <Footer />
-    </div>
+        <Toaster position='top-right' toastOptions={toastOptions} />
+
+        <Footer />
+      </div>
+    </>
   )
 }

@@ -2,9 +2,16 @@
 
 > Create beautiful quotes that people will remember.
 
-TODO
+## TODO
 
-- use https://github.com/bubkoo/html-to-image or https://github.com/niklasvh/html2canvas?
+- improve highlighting UX
+- support resizing
+- support import / export from url
+- store config and editor state in localstorage
+- add favicon + logo
+- page meta
+- add examples
+- docs
 
 ## License
 
