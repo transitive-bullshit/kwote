@@ -5,7 +5,7 @@
   justify-content: space-around;
   align-items: center;
   min-height: 100vh;
-  padding: calc(max(24px, 4vmin));
+  padding: 12px;
   gap: 24px;
   background: #2f3437;
 }

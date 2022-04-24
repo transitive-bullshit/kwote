@@ -7,9 +7,43 @@
   display: flex;
   flex-direction: row;
   gap: 1rem;
+  max-width: 700px;
 }
 
-@media only screen and (max-width: 900px) {
+.option {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.option label {
+  all: unset;
+  font-weight: 500;
+}
+
+@media only screen and (min-width: 699px) {
+  .optionBackgroundImage {
+    flex: 1.5;
+  }
+
+  .optionFontFamily {
+    flex: 1.2;
+  }
+
+  .optionFontSize {
+    flex: 0.8;
+  }
+
+  .optionPadding {
+    flex: 0.8;
+  }
+
+  .optionExportMenu button {
+    height: 100%;
+  }
+}
+
+@media only screen and (max-width: 700px) {
   .options {
     flex-direction: column;
   }

@@ -13,7 +13,6 @@
 
 .body {
   position: relative;
-  padding: 1rem;
   flex: 1;
   background: #fff;
   border-radius: 12px;
@@ -22,8 +21,9 @@
 }
 
 .input {
-  min-width: 256px;
-  min-height: 64px;
+  padding: 1rem;
+  min-width: 300px;
+  min-height: 96px;
   resize: none;
   tab-size: 1;
   outline: 0;

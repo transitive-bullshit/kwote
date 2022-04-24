@@ -8,3 +8,5 @@ export const fathomConfig = fathomId
       excludedDomains: ['localhost', 'localhost:3000']
     }
   : undefined
+
+export const githubRepoUrl = 'https://github.com/transitive-bullshit/kwote'

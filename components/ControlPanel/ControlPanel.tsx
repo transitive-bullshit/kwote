@@ -1,6 +1,6 @@
 import * as React from 'react'
 import cs from 'clsx'
-import { toPng, toJpeg, toSvg } from 'html-to-image'
+import { toPng, toJpeg, toSvg, toBlob } from 'html-to-image'
 import { toast } from 'react-hot-toast'
 import { Select } from '@chakra-ui/react'
 import {
@@ -27,28 +27,33 @@ import { useEditorStore } from '~/lib/editor-store'
 
 import styles from './styles.module.css'
 
-const backgroundImages = [
-  '/images/00.jpg',
-  '/images/01.jpg',
-  '/images/02.jpg',
-  '/images/03.jpg',
-  '/images/04.jpg',
-  '/images/05.jpg',
-  '/images/06.jpg',
-  '/images/07.jpg',
-  '/images/08.jpg',
-  '/images/09.jpg',
-  '/images/10.jpg',
-  '/images/11.jpg',
-  '/images/12.jpg',
-  '/images/13.jpg',
-  '/images/14.jpg',
-  '/images/15.jpg',
-  '/images/16.jpg',
-  '/images/17.jpg',
-  '/images/18.jpg',
-  '/images/19.jpg',
-  '/images/20.jpg'
+type BackgroundImageOption = {
+  url: string
+  name: string
+}
+
+const backgroundImageOptions: BackgroundImageOption[] = [
+  { url: '/images/00.jpg', name: 'Gradient 1' },
+  { url: '/images/01.jpg', name: 'Gradient 2' },
+  { url: '/images/02.jpg', name: 'Gradient 3' },
+  { url: '/images/03.jpg', name: 'Gradient 4' },
+  { url: '/images/04.jpg', name: 'Gradient 5' },
+  { url: '/images/05.jpg', name: 'Gradient 6' },
+  { url: '/images/06.jpg', name: 'Gradient 7' },
+  { url: '/images/07.jpg', name: 'Gradient 8' },
+  { url: '/images/08.jpg', name: 'Gradient 9' },
+  { url: '/images/09.jpg', name: 'Gradient 10' },
+  { url: '/images/10.jpg', name: 'Gradient 11' },
+  { url: '/images/11.jpg', name: 'Gradient 12' },
+  { url: '/images/12.jpg', name: 'Gradient 13' },
+  { url: '/images/13.jpg', name: 'Gradient 14' },
+  { url: '/images/14.jpg', name: 'Gradient 15' },
+  { url: '/images/15.jpg', name: 'Gradient 16' },
+  { url: '/images/16.jpg', name: 'Gradient 17' },
+  { url: '/images/17.jpg', name: 'Gradient 18' },
+  { url: '/images/18.jpg', name: 'Gradient 19' },
+  { url: '/images/19.jpg', name: 'Gradient 20' },
+  { url: '/images/20.jpg', name: 'Gradient 21' }
 ]
 
 const fontFamilies = [
@@ -90,7 +95,7 @@ export const ControlPanel: React.FC<{ className?: string }> = ({
       return
     }
 
-    toPng(container, { cacheBust: true })
+    toPng(container)
       .then((dataUrl: string) => {
         const link = document.createElement('a')
         link.download = `${filename}.png`
@@ -109,13 +114,13 @@ export const ControlPanel: React.FC<{ className?: string }> = ({
       return
     }
 
-    toJpeg(container, { cacheBust: true, quality: 0.9 })
+    toJpeg(container, { quality: 0.9 })
       .then((dataUrl: string) => {
         const link = document.createElement('a')
         link.download = `${filename}.jpg`
         link.href = dataUrl
         link.click()
-        toast.success('Saved png image')
+        toast.success('Saved jpeg image')
       })
       .catch((err: Error) => {
         console.error(err)
@@ -128,7 +133,7 @@ export const ControlPanel: React.FC<{ className?: string }> = ({
       return
     }
 
-    toSvg(container, { cacheBust: true })
+    toSvg(container)
       .then((dataUrl: string) => {
         const link = document.createElement('a')
         link.download = `${filename}.svg`
@@ -142,13 +147,43 @@ export const ControlPanel: React.FC<{ className?: string }> = ({
       })
   }, [container])
 
+  const onClickCopyAsPNG = React.useCallback(async () => {
+    if (!container) {
+      return
+    }
+
+    toBlob(container)
+      .then((blob: Blob | null) => {
+        if (!blob) {
+          console.error('unknown error occurred exporting image')
+          toast.error('Error exporting image. Check the console for details')
+          return
+        }
+
+        const item = new ClipboardItem({ 'image/png': blob })
+        navigator.clipboard
+          .write([item])
+          .then(() => {
+            toast.success('Copied png image to clipboard')
+          })
+          .catch((err: Error) => {
+            console.error(err)
+            toast.error(
+              'Error copying image to clipboard. Check the console for details'
+            )
+          })
+      })
+      .catch((err: Error) => {
+        console.error(err)
+        toast.error('Error exporting image. Check the console for details')
+      })
+  }, [container])
+
   return (
     <Paper className={cs(styles.container, className)}>
       <div className={styles.options}>
-        <FormControl>
-          <FormLabel htmlFor='select-backround-image'>
-            Background Image
-          </FormLabel>
+        <div className={cs(styles.option, styles.optionBackgroundImage)}>
+          <label htmlFor='select-backround-image'>Background Image</label>
 
           <Select
             id='select-background-image'
@@ -159,16 +194,16 @@ export const ControlPanel: React.FC<{ className?: string }> = ({
               updateConfig({ background: event.target.value })
             }}
           >
-            {backgroundImages.map((image) => (
-              <option key={image} value={image}>
-                {image}
+            {backgroundImageOptions.map((option) => (
+              <option key={option.url} value={option.url}>
+                {option.name}
               </option>
             ))}
           </Select>
-        </FormControl>
+        </div>
 
-        <FormControl>
-          <FormLabel htmlFor='select-font-family'>Font</FormLabel>
+        <div className={cs(styles.option, styles.optionFontFamily)}>
+          <label htmlFor='select-font-family'>Font</label>
 
           <Select
             id='select-font-family'
@@ -185,10 +220,10 @@ export const ControlPanel: React.FC<{ className?: string }> = ({
               </option>
             ))}
           </Select>
-        </FormControl>
+        </div>
 
-        <FormControl>
-          <FormLabel htmlFor='input-font-size'>Font Size</FormLabel>
+        <div className={cs(styles.option, styles.optionFontSize)}>
+          <label htmlFor='input-font-size'>Font Size</label>
 
           <NumberInput
             id='input-font-size'
@@ -198,7 +233,7 @@ export const ControlPanel: React.FC<{ className?: string }> = ({
             size='sm'
             onChange={(value) => {
               const parsedValue = parseInt(value)
-              if (parsedValue) {
+              if (!isNaN(parsedValue) && parsedValue >= 0) {
                 updateConfig({ fontSize: parsedValue })
               }
             }}
@@ -209,20 +244,21 @@ export const ControlPanel: React.FC<{ className?: string }> = ({
               <NumberDecrementStepper />
             </NumberInputStepper>
           </NumberInput>
-        </FormControl>
+        </div>
 
-        <FormControl>
-          <FormLabel htmlFor='input-padding'>Padding</FormLabel>
+        <div className={cs(styles.option, styles.optionPadding)}>
+          <label htmlFor='input-padding'>Padding</label>
 
           <NumberInput
             id='padding'
             value={`${config.padding}`}
-            min={-1}
+            min={0}
             max={64}
             size='sm'
             onChange={(value) => {
+              console.log(value)
               const parsedValue = parseInt(value)
-              if (parsedValue) {
+              if (!isNaN(parsedValue) && parsedValue >= 0) {
                 updateConfig({ padding: parsedValue })
               }
             }}
@@ -233,15 +269,13 @@ export const ControlPanel: React.FC<{ className?: string }> = ({
               <NumberDecrementStepper />
             </NumberInputStepper>
           </NumberInput>
-        </FormControl>
+        </div>
 
         <Divider orientation='vertical' />
 
-        <FormControl>
-          <FormLabel htmlFor='menu-export'>Export</FormLabel>
-
+        <div className={cs(styles.option, styles.optionExportMenu)}>
           <Menu id='menu-export'>
-            <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
+            <MenuButton as={Button} size='lg' rightIcon={<ChevronDownIcon />}>
               Export
             </MenuButton>
 
@@ -251,12 +285,12 @@ export const ControlPanel: React.FC<{ className?: string }> = ({
                 <MenuItem onClick={onClickSaveToJPEG}>Save jpeg</MenuItem>
                 <MenuItem onClick={onClickSaveToSVG}>Save svg</MenuItem>
                 <MenuDivider />
-                <MenuItem>Copy png</MenuItem>
+                <MenuItem onClick={onClickCopyAsPNG}>Copy png</MenuItem>
                 <MenuItem>Copy URL</MenuItem>
               </MenuList>
             </Portal>
           </Menu>
-        </FormControl>
+        </div>
       </div>
     </Paper>
   )

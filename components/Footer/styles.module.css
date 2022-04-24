@@ -1,0 +1,59 @@
+.footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  color: #fff;
+}
+
+.copyright {
+  font-size: 80%;
+  padding: 0.5em;
+}
+
+.social {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  user-select: none;
+}
+
+.social a {
+  cursor: pointer;
+  width: 2em;
+  height: 2em;
+  display: inline-flex;
+  padding: 0.25em;
+  transition: color 250ms ease-out;
+}
+
+.social a:last-of-type {
+  margin-right: 0;
+}
+
+.social a:hover {
+  transition: color 50ms ease-out;
+}
+
+.twitter:hover {
+  color: #2795e9;
+}
+
+.github:hover {
+  color: #c9510c;
+}
+
+@media only screen and (max-width: 500px) {
+  .footer {
+    flex-direction: column;
+  }
+
+  .footer .social {
+    order: 1;
+  }
+
+  .footer .copyright {
+    order: 2;
+  }
+}
