@@ -19,7 +19,6 @@ Another trait, it took me a while to notice. I noticed the following facts about
 
 ## TODO
 
-- improve highlighting UX
 - add social image
 - add examples
 - fix lexical bug with newlines

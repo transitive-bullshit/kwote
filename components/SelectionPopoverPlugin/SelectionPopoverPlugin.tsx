@@ -113,9 +113,7 @@ function FloatingSelectionPopover({
   useEffect(() => {
     return mergeRegister(
       editor.registerUpdateListener(({ editorState }) => {
-        console.log('selection change 0')
         editorState.read(() => {
-          console.log('selection change 1')
           updatePopover()
         })
       }),
@@ -123,7 +121,6 @@ function FloatingSelectionPopover({
       editor.registerCommand(
         SELECTION_CHANGE_COMMAND,
         () => {
-          console.log('selection change 2')
           updatePopover()
           return false
         },
@@ -146,24 +143,30 @@ function FloatingSelectionPopover({
   return (
     <div ref={popoverRef} className={styles['selection-popover']}>
       <button
-        onClick={() => {
+        onClick={(event) => {
+          event.preventDefault()
+
           if (isItalic) {
             editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'italic')
           }
 
           editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'bold')
+          return false
         }}
         className={cs(styles.item, styles.bold, isBold && styles.active)}
         aria-label='Highlight text as bold'
       />
 
       <button
-        onClick={() => {
+        onClick={(event) => {
+          event.preventDefault()
+
           if (isBold) {
             editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'bold')
           }
 
           editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'italic')
+          return false
         }}
         className={cs(styles.item, styles.italic, isItalic && styles.active)}
         aria-label='Highlight text as italic'
@@ -199,59 +202,64 @@ function useSelectionPopover(editor: LexicalEditor): React.ReactElement | null {
   const [isStrikethrough, setIsStrikethrough] = useState(false)
   const [isCode, setIsCode] = useState(false)
 
-  // useEffect(() => {
-  //   return editor.registerCommand(
-  //     BLUR_COMMAND,
-  //     () => {
-  //       setIsText(false)
-  //       setIsLink(false)
-  //       return false
-  //     },
-  //     COMMAND_PRIORITY_LOW
-  //   )
-  // }, [editor])
+  const updateSelectionState = React.useCallback(() => {
+    const selection = $getSelection()
+    if (!$isRangeSelection(selection)) {
+      return
+    }
+
+    const node = getSelectedNode(selection)
+
+    // Update text format
+    setIsBold(selection.hasFormat('bold'))
+    setIsItalic(selection.hasFormat('italic'))
+    setIsUnderline(selection.hasFormat('underline'))
+    setIsStrikethrough(selection.hasFormat('strikethrough'))
+    setIsCode(selection.hasFormat('code'))
+
+    // Update links
+    const parent = node.getParent()
+    if ($isLinkNode(parent) || $isLinkNode(node)) {
+      setIsLink(true)
+    } else {
+      setIsLink(false)
+    }
+
+    if (
+      !$isCodeHighlightNode(selection.anchor.getNode()) &&
+      selection.getTextContent() !== ''
+    ) {
+      setIsText($isTextNode(node))
+    } else {
+      setIsText(false)
+    }
+  }, [])
+
+  useEffect(() => {
+    return editor.registerCommand(
+      BLUR_COMMAND,
+      (event: React.FocusEvent) => {
+        updateSelectionState()
+
+        // TODO: test this on non-chrome browsers
+        if (!event.relatedTarget) {
+          setIsText(false)
+          setIsLink(false)
+        }
+
+        return false
+      },
+      COMMAND_PRIORITY_LOW
+    )
+  }, [editor, updateSelectionState])
 
   useEffect(() => {
     return editor.registerUpdateListener(({ editorState }) => {
       editorState.read(() => {
-        const selection = $getSelection()
-        console.log('update', {
-          selection,
-          isRange: $isRangeSelection(selection)
-        })
-
-        if (!$isRangeSelection(selection)) {
-          return
-        }
-
-        const node = getSelectedNode(selection)
-
-        // Update text format
-        setIsBold(selection.hasFormat('bold'))
-        setIsItalic(selection.hasFormat('italic'))
-        setIsUnderline(selection.hasFormat('underline'))
-        setIsStrikethrough(selection.hasFormat('strikethrough'))
-        setIsCode(selection.hasFormat('code'))
-
-        // Update links
-        const parent = node.getParent()
-        if ($isLinkNode(parent) || $isLinkNode(node)) {
-          setIsLink(true)
-        } else {
-          setIsLink(false)
-        }
-
-        if (
-          !$isCodeHighlightNode(selection.anchor.getNode()) &&
-          selection.getTextContent() !== ''
-        ) {
-          setIsText($isTextNode(node))
-        } else {
-          setIsText(false)
-        }
+        updateSelectionState()
       })
     })
-  }, [editor])
+  }, [editor, updateSelectionState])
 
   if (!isText || isLink) {
     return null
