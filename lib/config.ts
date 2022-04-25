@@ -5,7 +5,7 @@ export const isServer = typeof window === 'undefined'
 export const title = 'Kwote'
 export const description = 'Create beautiful quotes that people will remember.'
 export const twitter = 'transitive_bs'
-export const domain = 'kwote.xyz'
+export const domain = 'kwote.app'
 export const image: string | null = null
 export const githubRepoUrl = 'https://github.com/transitive-bullshit/kwote'
 
