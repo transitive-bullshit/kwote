@@ -38,7 +38,7 @@
 }
 
 .optionSizing {
-  flex: 1;
+  flex: 0.5;
 }
 
 .optionExportMenu {

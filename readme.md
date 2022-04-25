@@ -15,8 +15,9 @@ Another trait, it took me a while to notice. I noticed the following facts about
 - improve highlighting UX
 - support import / export from url
 - store config and editor state in localstorage
-- add favicon + logo
+- add favicon, logo, social image
 - add examples
+- fix lexical bug with newlines
 - docs
 
 ## License

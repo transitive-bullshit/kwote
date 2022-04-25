@@ -364,7 +364,7 @@ export const ControlPanel: React.FC<{ className?: string }> = ({
             hasArrow
             label={
               isValidTwitterAspectRatio
-                ? 'Content will not be cropped by Twitter as an inline image.'
+                ? 'This content should not be cropped by Twitter as an inline image.'
                 : "Resize content so Twitter won't crop it as an inline image."
             }
             shouldWrapChildren

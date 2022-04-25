@@ -1,4 +1,5 @@
 import create from 'zustand'
+import { persist } from 'zustand/middleware'
 
 import { KwoteEditorConfig } from './types'
 
@@ -20,14 +21,25 @@ const defaultConfig: KwoteEditorConfig = {
   width: 'auto'
 }
 
-export const useEditorStore = create<EditorStore>((set) => ({
-  config: defaultConfig,
-  editorRef: null,
-  currentWidth: 0,
-  currentHeight: 0,
-  updateConfig: (update) =>
-    set((state) => ({ config: { ...state.config, ...update } })),
-  setEditorRef: (editorRef: HTMLElement | null) => set(() => ({ editorRef })),
-  setCurrentSize: (width: number, height: number) =>
-    set(() => ({ currentWidth: width, currentHeight: height }))
-}))
+export const useEditorStore = create<EditorStore>()(
+  persist(
+    (set) => ({
+      config: defaultConfig,
+      editorRef: null,
+      currentWidth: 0,
+      currentHeight: 0,
+      updateConfig: (update) =>
+        set((state) => ({ config: { ...state.config, ...update } })),
+      setEditorRef: (editorRef: HTMLElement | null) =>
+        set(() => ({ editorRef })),
+      setCurrentSize: (width: number, height: number) =>
+        set(() => ({ currentWidth: width, currentHeight: height })),
+      reset: () => set(() => ({ config: defaultConfig }))
+    }),
+    {
+      name: 'kwote-config',
+      getStorage: () => localStorage,
+      partialize: (state) => ({ config: state.config })
+    }
+  )
+)
