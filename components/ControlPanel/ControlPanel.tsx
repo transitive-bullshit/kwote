@@ -205,7 +205,7 @@ export const ControlPanel: React.FC<{ className?: string }> = ({
     }
   }, [isValidTwitterAspectRatio])
 
-  React.useLayoutEffect(() => {
+  React.useEffect(() => {
     if (!isResizing) {
       return
     }

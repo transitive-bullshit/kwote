@@ -34,6 +34,7 @@
     "react-dom": "18.0.0",
     "react-hot-toast": "^2.2.0",
     "react-use": "^17.3.2",
+    "use-delayed-render": "^0.0.7",
     "zustand": "^4.0.0-rc.0"
   },
   "devDependencies": {

@@ -1,5 +1,7 @@
 import * as React from 'react'
 import { Toaster, DefaultToastOptions } from 'react-hot-toast'
+import useDelayedRender from 'use-delayed-render'
+import cs from 'clsx'
 
 import { githubRepoUrl } from '~/lib/config'
 import { Editor } from '~/components/Editor/Editor'
@@ -25,6 +27,10 @@ export const HomePage: React.FC = () => {
     setHasMounted(true)
   }, [])
 
+  const { mounted, rendered } = useDelayedRender(hasMounted, {
+    enterDelay: 100
+  })
+
   return (
     <>
       <PageHead />
@@ -33,10 +39,16 @@ export const HomePage: React.FC = () => {
         <GitHubShareButton repoUrl={githubRepoUrl} />
 
         <main className={styles.main}>
-          {hasMounted && <Editor className={styles.editor} />}
+          {mounted && (
+            <Editor className={cs(styles.editor, rendered && styles.visible)} />
+          )}
         </main>
 
-        {hasMounted && <ControlPanel className={styles.controlPanel} />}
+        {mounted && (
+          <ControlPanel
+            className={cs(styles.controlPanel, rendered && styles.visible)}
+          />
+        )}
 
         <Toaster position='top-right' toastOptions={toastOptions} />
 
