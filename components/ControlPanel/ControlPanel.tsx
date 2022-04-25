@@ -1,5 +1,6 @@
 import * as React from 'react'
 import cs from 'clsx'
+import shallow from 'zustand/shallow'
 import { toPng, toJpeg, toSvg, toBlob } from 'html-to-image'
 import { toast } from 'react-hot-toast'
 import { Select } from '@chakra-ui/react'
@@ -16,12 +17,14 @@ import {
   MenuButton,
   MenuList,
   MenuItem,
-  MenuDivider
+  MenuDivider,
+  Tooltip
 } from '@chakra-ui/react'
 import { ChevronDownIcon } from '@chakra-ui/icons'
 
 import { Paper } from '~/components/Paper/Paper'
 import { useEditorStore } from '~/lib/editor-store'
+import { MIN_FRAME_WIDTH, MAX_FRAME_WIDTH } from '~/lib/config'
 
 import styles from './styles.module.css'
 
@@ -86,14 +89,24 @@ const filename = 'kwote'
 export const ControlPanel: React.FC<{ className?: string }> = ({
   className
 }) => {
-  const { config, updateConfig, container } = useEditorStore()
+  const { config, updateConfig, editorRef, currentWidth, currentHeight } =
+    useEditorStore(
+      (store) => ({
+        config: store.config,
+        updateConfig: store.updateConfig,
+        editorRef: store.editorRef,
+        currentWidth: store.currentWidth,
+        currentHeight: store.currentHeight
+      }),
+      shallow
+    )
 
   const onClickSaveToPNG = React.useCallback(() => {
-    if (!container) {
+    if (!editorRef) {
       return
     }
 
-    toPng(container)
+    toPng(editorRef)
       .then((dataUrl: string) => {
         const link = document.createElement('a')
         link.download = `${filename}.png`
@@ -105,14 +118,14 @@ export const ControlPanel: React.FC<{ className?: string }> = ({
         console.error(err)
         toast.error('Error exporting image. Check the console for details')
       })
-  }, [container])
+  }, [editorRef])
 
   const onClickSaveToJPEG = React.useCallback(() => {
-    if (!container) {
+    if (!editorRef) {
       return
     }
 
-    toJpeg(container, { quality: 0.9 })
+    toJpeg(editorRef, { quality: 0.9 })
       .then((dataUrl: string) => {
         const link = document.createElement('a')
         link.download = `${filename}.jpg`
@@ -124,14 +137,14 @@ export const ControlPanel: React.FC<{ className?: string }> = ({
         console.error(err)
         toast.error('Error exporting image. Check the console for details')
       })
-  }, [container])
+  }, [editorRef])
 
   const onClickSaveToSVG = React.useCallback(() => {
-    if (!container) {
+    if (!editorRef) {
       return
     }
 
-    toSvg(container)
+    toSvg(editorRef)
       .then((dataUrl: string) => {
         const link = document.createElement('a')
         link.download = `${filename}.svg`
@@ -143,14 +156,14 @@ export const ControlPanel: React.FC<{ className?: string }> = ({
         console.error(err)
         toast.error('Error exporting image. Check the console for details')
       })
-  }, [container])
+  }, [editorRef])
 
   const onClickCopyAsPNG = React.useCallback(async () => {
-    if (!container) {
+    if (!editorRef) {
       return
     }
 
-    toBlob(container)
+    toBlob(editorRef)
       .then((blob: Blob | null) => {
         if (!blob) {
           console.error('unknown error occurred exporting image')
@@ -175,7 +188,83 @@ export const ControlPanel: React.FC<{ className?: string }> = ({
         console.error(err)
         toast.error('Error exporting image. Check the console for details')
       })
-  }, [container])
+  }, [editorRef])
+
+  const [isResizing, setIsResizing] = React.useState(false)
+  const numResizeSteps = React.useRef(0)
+  const aspectRatio = currentWidth / currentHeight
+  const isValidTwitterAspectRatio = aspectRatio <= 2 && aspectRatio >= 0.75
+
+  const onClickTwitterSizing = React.useCallback(() => {
+    if (!isValidTwitterAspectRatio) {
+      numResizeSteps.current = 0
+      setIsResizing(true)
+    } else {
+      toast.success('Image will not be cropped by Twitter')
+      return
+    }
+  }, [isValidTwitterAspectRatio])
+
+  React.useLayoutEffect(() => {
+    if (!isResizing) {
+      return
+    }
+
+    const aspectRatio = currentWidth / currentHeight
+    if (isNaN(aspectRatio)) {
+      setIsResizing(false)
+      return
+    }
+
+    const stepSize = 10
+    if (aspectRatio > 2) {
+      const newWidth =
+        numResizeSteps.current > 0
+          ? currentWidth - stepSize
+          : currentHeight * 2.35
+
+      const width = Math.max(
+        MIN_FRAME_WIDTH,
+        Math.min(newWidth, MAX_FRAME_WIDTH)
+      )
+
+      if (width === currentWidth) {
+        toast('Image may still be cropped by Twitter')
+        setIsResizing(false)
+        return
+      } else {
+        updateConfig({ width })
+      }
+    } else if (aspectRatio < 0.75) {
+      const newWidth =
+        numResizeSteps.current > 0 ? currentWidth + stepSize : MAX_FRAME_WIDTH
+
+      const width = Math.max(
+        MIN_FRAME_WIDTH,
+        Math.min(newWidth, MAX_FRAME_WIDTH)
+      )
+
+      if (width === currentWidth) {
+        toast('Image may still be cropped by Twitter')
+        setIsResizing(false)
+        return
+      } else {
+        updateConfig({ width })
+        if (numResizeSteps.current === 0) {
+          return
+        }
+      }
+    } else {
+      toast.success('Image aspect ratio has been optimized for Twitter')
+      setIsResizing(false)
+      return
+    }
+
+    if (++numResizeSteps.current > 100) {
+      toast('Image may still be cropped by Twitter')
+      setIsResizing(false)
+    }
+  }, [currentWidth, currentHeight, updateConfig, isResizing])
 
   return (
     <Paper className={cs(styles.container, className)}>
@@ -254,7 +343,6 @@ export const ControlPanel: React.FC<{ className?: string }> = ({
             max={64}
             size='sm'
             onChange={(value) => {
-              console.log(value)
               const parsedValue = parseInt(value)
               if (!isNaN(parsedValue) && parsedValue >= 0) {
                 updateConfig({ padding: parsedValue })
@@ -267,6 +355,30 @@ export const ControlPanel: React.FC<{ className?: string }> = ({
               <NumberDecrementStepper />
             </NumberInputStepper>
           </NumberInput>
+        </div>
+
+        <div className={cs(styles.option, styles.optionSizing)}>
+          <label htmlFor='select-sizing'>Sizing</label>
+
+          <Tooltip
+            hasArrow
+            label={
+              isValidTwitterAspectRatio
+                ? 'Content will not be cropped by Twitter as an inline image.'
+                : "Resize content so Twitter won't crop it as an inline image."
+            }
+            shouldWrapChildren
+            mt='3'
+          >
+            <Button
+              id='select-sizing'
+              size='sm'
+              onClick={onClickTwitterSizing}
+              disabled={isValidTwitterAspectRatio}
+            >
+              Twitter
+            </Button>
+          </Tooltip>
         </div>
 
         <Divider orientation='vertical' />

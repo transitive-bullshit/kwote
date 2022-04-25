@@ -12,10 +12,10 @@ import { PageHead } from '../PageHead/PageHead'
 
 const toastOptions: DefaultToastOptions = {
   success: {
-    duration: 3000
+    duration: 5000
   },
   error: {
-    duration: 6000
+    duration: 7000
   }
 }
 

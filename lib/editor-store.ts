@@ -4,21 +4,30 @@ import { KwoteEditorConfig } from './types'
 
 interface EditorStore {
   config: KwoteEditorConfig
-  container: HTMLElement | null
+  editorRef: HTMLElement | null
+  currentWidth: number
+  currentHeight: number
   updateConfig: (update: Partial<KwoteEditorConfig>) => void
-  setContainer: (container: HTMLElement | null) => void
+  setEditorRef: (editorRef: HTMLElement | null) => void
+  setCurrentSize: (width: number, height: number) => void
+}
+
+const defaultConfig: KwoteEditorConfig = {
+  background: '/images/00.jpg',
+  fontFamily: 'Inter',
+  fontSize: 16,
+  padding: 32,
+  width: 'auto'
 }
 
 export const useEditorStore = create<EditorStore>((set) => ({
-  config: {
-    background: '/images/00.jpg',
-    fontFamily: 'Inter',
-    fontSize: 16,
-    padding: 32,
-    width: 'auto'
-  },
-  container: null,
+  config: defaultConfig,
+  editorRef: null,
+  currentWidth: 0,
+  currentHeight: 0,
   updateConfig: (update) =>
     set((state) => ({ config: { ...state.config, ...update } })),
-  setContainer: (container: HTMLElement | null) => set(() => ({ container }))
+  setEditorRef: (editorRef: HTMLElement | null) => set(() => ({ editorRef })),
+  setCurrentSize: (width: number, height: number) =>
+    set(() => ({ currentWidth: width, currentHeight: height }))
 }))
