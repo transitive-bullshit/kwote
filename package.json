@@ -2,9 +2,10 @@
   "name": "kwote",
   "version": "0.1.0",
   "private": true,
-  "description": "Create beautiful quotes that people will remember.",
+  "description": "Create beautiful quotes that capture your attention.",
   "author": "Travis Fischer <travis@transitivebullsh.it>",
   "repository": "transitive-bullshit/kwote",
+  "homepage": "https://kwote.app",
   "license": "MIT",
   "engines": {
     "node": ">=12"
