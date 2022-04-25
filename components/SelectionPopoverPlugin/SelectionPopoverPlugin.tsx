@@ -47,13 +47,6 @@ function setPopoverPosition(popoverEl: HTMLElement, rect: DOMRect) {
       rect.width / 2 -
       popoverEl.offsetWidth / 2
     }px`
-    // console.log({
-    //   left: rect.left,
-    //   top: rect.top,
-    //   width: rect.width,
-    //   height: rect.height,
-    //   offsetWidth: popoverEl.offsetWidth
-    // })
   }
 }
 

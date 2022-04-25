@@ -417,7 +417,6 @@ export const ControlPanel: React.FC<{ className?: string }> = ({
                   size='sm'
                   onChange={(value) => {
                     const parsedValue = parseFloat(value)
-                    console.log('aspectRatio', parsedValue)
 
                     if (!isNaN(parsedValue) && parsedValue >= 0) {
                       updateConfig({ aspectRatio: parsedValue })
