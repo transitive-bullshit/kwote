@@ -20,6 +20,11 @@ const toastOptions: DefaultToastOptions = {
 }
 
 export const HomePage: React.FC = () => {
+  const [hasMounted, setHasMounted] = React.useState(false)
+  React.useEffect(() => {
+    setHasMounted(true)
+  }, [])
+
   return (
     <>
       <PageHead />
@@ -28,10 +33,10 @@ export const HomePage: React.FC = () => {
         <GitHubShareButton repoUrl={githubRepoUrl} />
 
         <main className={styles.main}>
-          <Editor className={styles.editor} />
+          {hasMounted && <Editor className={styles.editor} />}
         </main>
 
-        <ControlPanel className={styles.controlPanel} />
+        {hasMounted && <ControlPanel className={styles.controlPanel} />}
 
         <Toaster position='top-right' toastOptions={toastOptions} />
 
