@@ -1,0 +1,17 @@
+{
+  "name": "Kwote",
+  "short_name": "Kwote",
+  "icons": [
+    {
+      "src": "/icon@32w.png",
+      "type": "image/png",
+      "sizes": "32x32"
+    },
+    {
+      "src": "/icon@128w.png",
+      "type": "image/png",
+      "sizes": "128x128"
+    }
+  ],
+  "display": "standalone"
+}
