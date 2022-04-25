@@ -14,7 +14,7 @@ Another trait, it took me a while to notice. I noticed the following facts about
 
 - improve highlighting UX
 - support import / export from url
-- add favicon, logo, social image
+- add social image
 - add examples
 - fix lexical bug with newlines
 - docs

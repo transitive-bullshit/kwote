@@ -1,11 +1,13 @@
 import * as React from 'react'
 import cs from 'clsx'
 import shallow from 'zustand/shallow'
+import { useLocalStorage } from 'react-use'
 
-// import type { EditorState } from 'lexical'
+import type { EditorState } from 'lexical'
 import LexicalComposer from '@lexical/react/LexicalComposer'
 import RichTextPlugin from '@lexical/react/LexicalRichTextPlugin'
 import ContentEditable from '@lexical/react/LexicalContentEditable'
+import OnChangePlugin from '@lexical/react/LexicalOnChangePlugin'
 import { HistoryPlugin } from '@lexical/react/LexicalHistoryPlugin'
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'
 import useSize from '@react-hook/size'
@@ -33,6 +35,37 @@ function AutoFocusPlugin() {
   return null
 }
 
+function RestoreFromLocalStoragePlugin() {
+  const [editor] = useLexicalComposerContext()
+  const [serializedEditorState, setSerializedEditorState] = useLocalStorage<
+    string | null
+  >('kwote-editor-state', null)
+  const [isFirstRender, setIsFirstRender] = React.useState(true)
+
+  React.useEffect(() => {
+    if (isFirstRender) {
+      setIsFirstRender(false)
+
+      if (serializedEditorState) {
+        const initialEditorState = editor.parseEditorState(
+          serializedEditorState
+        )
+        editor.setEditorState(initialEditorState)
+      }
+    }
+  }, [isFirstRender, serializedEditorState, editor])
+
+  const onChange = React.useCallback(
+    (editorState: EditorState) => {
+      setSerializedEditorState(JSON.stringify(editorState.toJSON()))
+    },
+    [setSerializedEditorState]
+  )
+
+  // TODO: add ignoreSelectionChange
+  return <OnChangePlugin onChange={onChange} />
+}
+
 export const Editor: React.FC<{ className?: string }> = ({ className }) => {
   const editorRef = React.useRef<HTMLDivElement>(null)
   const kwoteEditorConfig = useEditorStore((store) => store.config, shallow)
@@ -44,33 +77,6 @@ export const Editor: React.FC<{ className?: string }> = ({ className }) => {
   const activeResizeHandle = React.useRef<'left' | 'right' | null>(null)
   const resizeStartX = React.useRef<number>(0)
   const resizeStartWidth = React.useRef<number>(0)
-
-  React.useEffect(() => {
-    setKwoteCurrentSize(width, height)
-  }, [setKwoteCurrentSize, width, height])
-
-  // const [serializedInitialEditorState, setSerializedInitialEditorState] =
-  //   useLocalStorage<string | null>('kwote-editor-state', null)
-  // const initialEditorState = React.useRef<EditorState>()
-  // const [isFirstRender, setIsFirstRender] = React.useState(true)
-
-  // React.useEffect(() => {
-  //   if (isFirstRender) {
-  //     setIsFirstRender(false)
-
-  //     if (serializedInitialEditorState) {
-  //       initialEditorState.current = JSON.parse(serializedInitialEditorState)
-  //       console.log('initial editor', {
-  //         serializedInitialEditorState: serializedInitialEditorState,
-  //         initialEditorState: initialEditorState.current
-  //       })
-  //     }
-  //   }
-  // }, [isFirstRender, serializedInitialEditorState])
-
-  // if (isFirstRender) {
-  //   return null
-  // }
 
   const editorStyle = React.useMemo<React.CSSProperties>(() => {
     const props: React.CSSProperties = {
@@ -96,6 +102,14 @@ export const Editor: React.FC<{ className?: string }> = ({ className }) => {
       setKwoteEditorRef(null)
     }
   }, [editorRef, setKwoteEditorRef])
+
+  React.useEffect(() => {
+    setKwoteCurrentSize(width, height)
+  }, [setKwoteCurrentSize, width, height])
+
+  const onClickAutoWidth = React.useCallback(() => {
+    updateKwoteEditorConfig({ width: 'auto' })
+  }, [updateKwoteEditorConfig])
 
   const onMouseDownResizeHandle = React.useCallback(
     (event: React.MouseEvent, handle: 'left' | 'right') => {
@@ -148,10 +162,6 @@ export const Editor: React.FC<{ className?: string }> = ({ className }) => {
     }
   }, [updateKwoteEditorConfig])
 
-  const onClickAutoWidth = React.useCallback(() => {
-    updateKwoteEditorConfig({ width: 'auto' })
-  }, [updateKwoteEditorConfig])
-
   return (
     <>
       <GoogleFont fontFamily={kwoteEditorConfig.fontFamily} />
@@ -168,6 +178,7 @@ export const Editor: React.FC<{ className?: string }> = ({ className }) => {
                 />
                 <HistoryPlugin />
                 <AutoFocusPlugin />
+                <RestoreFromLocalStoragePlugin />
               </div>
             </LexicalComposer>
           </div>
