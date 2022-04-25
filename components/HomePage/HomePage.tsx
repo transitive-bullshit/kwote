@@ -13,6 +13,7 @@ import styles from './styles.module.css'
 import { PageHead } from '../PageHead/PageHead'
 
 const toastOptions: DefaultToastOptions = {
+  duration: 5000,
   success: {
     duration: 4000
   },

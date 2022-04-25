@@ -7,7 +7,7 @@
   display: flex;
   flex-direction: row;
   gap: 1rem;
-  max-width: 800px;
+  max-width: 900px;
 }
 
 .option {
@@ -16,7 +16,7 @@
   gap: 0.25rem;
 }
 
-.option label {
+.option .label {
   all: unset;
   font-weight: 500;
 }
@@ -37,12 +37,33 @@
   flex: 0.8;
 }
 
+.optionAspectRatio {
+  flex: 1;
+}
+
 .optionSizing {
   flex: 0.5;
 }
 
 .optionExportMenu {
   justify-content: center;
+}
+
+.aspectRatioContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  min-height: 32px;
+  gap: 0.75rem;
+}
+
+.aspectRatioInput input {
+  padding: 0 12px;
+}
+
+.auto {
+  position: relative;
+  top: -1px;
 }
 
 @media only screen and (max-width: 810px) {

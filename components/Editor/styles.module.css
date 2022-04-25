@@ -24,7 +24,6 @@
 
 .body {
   position: relative;
-  flex: 1;
   width: 100%;
   background: #fff;
   border-radius: 12px;
@@ -35,7 +34,7 @@
 .input {
   padding: 1rem;
   min-width: 296px;
-  min-height: calc(max(96px, 4em));
+  min-height: calc(2rem + 1em);
   resize: none;
   tab-size: 1;
   outline: 0;
@@ -64,12 +63,12 @@
 }
 
 .input em {
-  background: #fdf59d;
+  background: #bbebff;
   font-style: normal;
 }
 
 .input strong {
-  background: #bbebff;
+  background: #fdf59d;
   font-weight: normal;
 }
 

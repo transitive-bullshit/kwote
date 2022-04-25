@@ -1,6 +1,11 @@
-# Kwote
+<p align="center">
+  <a href="https://kwote.vercel.app">
+    <img alt="Kwote makes it easy to create beautiful images that capture your attention." src="https://user-images.githubusercontent.com/552829/165167148-10b89841-1dfc-4003-aadc-5b101e645c74.jpg" width="666">
+  </a>
 
-> Create beautiful quotes that people will remember.
+[![Build Status](https://github.com/transitive-bullshit/nextjs-notion-starter-kit/actions/workflows/build.yml/badge.svg)](https://github.com/transitive-bullshit/nextjs-notion-starter-kit/actions/workflows/build.yml) [![Prettier Code Formatting](https://img.shields.io/badge/code_style-prettier-brightgreen.svg)](https://prettier.io)
+
+</p>
 
 ## Test Quote
 

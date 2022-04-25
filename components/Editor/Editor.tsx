@@ -8,6 +8,7 @@ import LexicalComposer from '@lexical/react/LexicalComposer'
 import RichTextPlugin from '@lexical/react/LexicalRichTextPlugin'
 import ContentEditable from '@lexical/react/LexicalContentEditable'
 import OnChangePlugin from '@lexical/react/LexicalOnChangePlugin'
+import AutoFocusPlugin from '@lexical/react/LexicalAutoFocusPlugin'
 import { HistoryPlugin } from '@lexical/react/LexicalHistoryPlugin'
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'
 import useSize from '@react-hook/size'
@@ -23,16 +24,6 @@ const lexicalEditorConfig = {
     console.error('lexical error', err)
     throw err
   }
-}
-
-function AutoFocusPlugin() {
-  const [editor] = useLexicalComposerContext()
-
-  React.useEffect(() => {
-    editor.focus()
-  }, [editor])
-
-  return null
 }
 
 function RestoreFromLocalStoragePlugin() {
@@ -79,15 +70,22 @@ export const Editor: React.FC<{ className?: string }> = ({ className }) => {
   const resizeStartWidth = React.useRef<number>(0)
 
   const editorStyle = React.useMemo<React.CSSProperties>(() => {
+    const { background, fontFamily, fontSize, padding, width, aspectRatio } =
+      kwoteEditorConfig
+
     const props: React.CSSProperties = {
-      backgroundImage: `url('${kwoteEditorConfig.background}')`,
-      fontFamily: `"${kwoteEditorConfig.fontFamily}", ui-sans-serif, system-ui, sans-serif`,
-      fontSize: `${kwoteEditorConfig.fontSize}px`,
-      padding: `${kwoteEditorConfig.padding}px`
+      backgroundImage: `url('${background}')`,
+      fontFamily: `"${fontFamily}", ui-sans-serif, system-ui, sans-serif`,
+      fontSize: `${fontSize}px`,
+      padding: `${padding}px`
     }
 
-    if (kwoteEditorConfig.width !== 'auto') {
-      props.width = `${kwoteEditorConfig.width}px`
+    if (width !== 'auto') {
+      props.width = `${width}px`
+    }
+
+    if (aspectRatio !== 'auto') {
+      props.aspectRatio = `${aspectRatio} / 1`
     }
 
     return props

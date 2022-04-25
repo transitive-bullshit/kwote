@@ -18,6 +18,8 @@ import {
   MenuList,
   MenuItem,
   MenuDivider,
+  Input,
+  Switch,
   Tooltip
 } from '@chakra-ui/react'
 import { ChevronDownIcon } from '@chakra-ui/icons'
@@ -229,7 +231,9 @@ export const ControlPanel: React.FC<{ className?: string }> = ({
       )
 
       if (width === currentWidth) {
-        toast('Image may still be cropped by Twitter')
+        toast(
+          'Image may still be cropped by Twitter because it has an aspect ratio > 2:1'
+        )
         setIsResizing(false)
         return
       } else {
@@ -245,7 +249,9 @@ export const ControlPanel: React.FC<{ className?: string }> = ({
       )
 
       if (width === currentWidth) {
-        toast('Image may still be cropped by Twitter')
+        toast(
+          'Image may still be cropped by Twitter because it has an aspect ratio < 3:4'
+        )
         setIsResizing(false)
         return
       } else {
@@ -270,7 +276,9 @@ export const ControlPanel: React.FC<{ className?: string }> = ({
     <Paper className={cs(styles.container, className)}>
       <div className={styles.options}>
         <div className={cs(styles.option, styles.optionBackgroundImage)}>
-          <label htmlFor='select-backround-image'>Background Image</label>
+          <label className={styles.label} htmlFor='select-backround-image'>
+            Background Image
+          </label>
 
           <Select
             id='select-background-image'
@@ -290,7 +298,9 @@ export const ControlPanel: React.FC<{ className?: string }> = ({
         </div>
 
         <div className={cs(styles.option, styles.optionFontFamily)}>
-          <label htmlFor='select-font-family'>Font</label>
+          <label className={styles.label} htmlFor='select-font-family'>
+            Font
+          </label>
 
           <Select
             id='select-font-family'
@@ -310,7 +320,9 @@ export const ControlPanel: React.FC<{ className?: string }> = ({
         </div>
 
         <div className={cs(styles.option, styles.optionFontSize)}>
-          <label htmlFor='input-font-size'>Font Size</label>
+          <label className={styles.label} htmlFor='input-font-size'>
+            Font Size
+          </label>
 
           <NumberInput
             id='input-font-size'
@@ -334,10 +346,12 @@ export const ControlPanel: React.FC<{ className?: string }> = ({
         </div>
 
         <div className={cs(styles.option, styles.optionPadding)}>
-          <label htmlFor='input-padding'>Padding</label>
+          <label className={styles.label} htmlFor='input-padding'>
+            Padding
+          </label>
 
           <NumberInput
-            id='padding'
+            id='input-padding'
             value={`${config.padding}`}
             min={0}
             max={64}
@@ -357,8 +371,72 @@ export const ControlPanel: React.FC<{ className?: string }> = ({
           </NumberInput>
         </div>
 
+        <div className={cs(styles.option, styles.optionAspectRatio)}>
+          <label className={styles.label} htmlFor='input-aspect-ratio'>
+            Aspect Ratio
+          </label>
+
+          <Tooltip
+            hasArrow
+            label={
+              'Some social platforms require images to have a certain aspect ratio.'
+            }
+            shouldWrapChildren
+            mt='3'
+          >
+            <div className={styles.aspectRatioContainer}>
+              <Switch
+                isChecked={config.aspectRatio !== 'auto'}
+                onChange={(event) => {
+                  if (event.target.checked) {
+                    updateConfig({ aspectRatio: 2 })
+                  } else {
+                    updateConfig({ aspectRatio: 'auto' })
+                  }
+                }}
+              />
+
+              {config.aspectRatio === 'auto' ? (
+                <Input
+                  id='aspect-ratio'
+                  className={styles.aspectRatioInput}
+                  value='auto'
+                  isDisabled={true}
+                  size='sm'
+                />
+              ) : (
+                <NumberInput
+                  id='aspect-ratio'
+                  className={styles.aspectRatioInput}
+                  defaultValue={`${config.aspectRatio}`}
+                  placeholder='auto'
+                  min={0.4}
+                  max={4.0}
+                  step={0.01}
+                  precision={2}
+                  size='sm'
+                  onChange={(value) => {
+                    const parsedValue = parseFloat(value)
+                    console.log('aspectRatio', parsedValue)
+
+                    if (!isNaN(parsedValue) && parsedValue >= 0) {
+                      updateConfig({ aspectRatio: parsedValue })
+                    } else if (!value.trim()) {
+                      updateConfig({ aspectRatio: 'auto' })
+                    }
+                  }}
+                >
+                  <NumberInputField />
+                </NumberInput>
+              )}
+            </div>
+          </Tooltip>
+        </div>
+
         <div className={cs(styles.option, styles.optionSizing)}>
-          <label htmlFor='select-sizing'>Sizing</label>
+          <label className={styles.label} htmlFor='select-sizing'>
+            Sizing
+          </label>
 
           <Tooltip
             hasArrow

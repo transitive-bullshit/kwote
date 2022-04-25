@@ -18,6 +18,7 @@ const defaultConfig: KwoteEditorConfig = {
   fontFamily: 'Inter',
   fontSize: 16,
   padding: 32,
+  aspectRatio: 'auto',
   width: 'auto'
 }
 
