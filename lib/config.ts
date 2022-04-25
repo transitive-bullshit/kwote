@@ -6,7 +6,6 @@ export const title = 'Kwote'
 export const description = 'Create beautiful quotes that people will remember.'
 export const twitter = 'transitive_bs'
 export const domain = 'kwote.app'
-export const image: string | null = null
 export const githubRepoUrl = 'https://github.com/transitive-bullshit/kwote'
 
 export const port = process.env.PORT || '3000'
@@ -20,5 +19,6 @@ export const fathomConfig = fathomId
     }
   : undefined
 
+export const image: string | null = `${host}/social.jpg`
 export const MIN_FRAME_WIDTH = 360
 export const MAX_FRAME_WIDTH = 1200
