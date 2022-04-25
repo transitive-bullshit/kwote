@@ -2,6 +2,7 @@ import * as React from 'react'
 import cs from 'clsx'
 import shallow from 'zustand/shallow'
 import { useLocalStorage } from 'react-use'
+import useSize from '@react-hook/size'
 
 import type { EditorState } from 'lexical'
 import LexicalComposer from '@lexical/react/LexicalComposer'
@@ -11,13 +12,13 @@ import OnChangePlugin from '@lexical/react/LexicalOnChangePlugin'
 import AutoFocusPlugin from '@lexical/react/LexicalAutoFocusPlugin'
 import { HistoryPlugin } from '@lexical/react/LexicalHistoryPlugin'
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'
-import useSize from '@react-hook/size'
 
+import { SelectionPopoverPlugin } from '~/components/SelectionPopoverPlugin/SelectionPopoverPlugin'
+import { GoogleFont } from '~/components/GoogleFont/GoogleFont'
 import { useEditorStore } from '~/lib/editor-store'
 import { MIN_FRAME_WIDTH, MAX_FRAME_WIDTH } from '~/lib/config'
 
 import styles from './styles.module.css'
-import { GoogleFont } from '../GoogleFont/GoogleFont'
 
 const lexicalEditorConfig = {
   onError(err: Error) {
@@ -177,6 +178,7 @@ export const Editor: React.FC<{ className?: string }> = ({ className }) => {
                 <HistoryPlugin />
                 <AutoFocusPlugin />
                 <RestoreFromLocalStoragePlugin />
+                <SelectionPopoverPlugin />
               </div>
             </LexicalComposer>
           </div>
