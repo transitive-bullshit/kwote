@@ -27,7 +27,7 @@
 
 ### How do I use Kwote?
 
-Kwote is a webapp optimized for desktop browsers.
+Kwote is a webapp optimized for desktop browsers (though mobile is also supported).
 
 1. Open [kwote.app](https://kwote.app/)
 2. Replace the main text with your favorite quote
