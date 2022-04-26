@@ -44,7 +44,7 @@ _Blue highlights are italic._ (CMD + I or Control + I)
 
 ### How does Kwote work?
 
-Kwote's editor is built using the [Lexical](https://github.com/facebook/lexical) text editing framework from Facebook. We replaced the normal bold formatting with a yellow highlight and the normal italic formatting with a blue highlight.
+Kwote's editor is built using the [Lexical](https://github.com/facebook/lexical) text editing framework from Facebook. We replaced the normal bold formatting with a yellow highlight and the normal italic formatting with a blue highlight ([via CSS](https://github.com/transitive-bullshit/kwote/blob/858212b8e1605dea90cba669cdedf76a1f17f39f/components/Editor/styles.module.css#L61-L77)).
 
 We use [html-to-image](https://github.com/bubkoo/html-to-image) to render the resulting image client-side via some cool [SVG magic](https://github.com/bubkoo/html-to-image#how-it-works).
 
