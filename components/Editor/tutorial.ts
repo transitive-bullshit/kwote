@@ -55,7 +55,7 @@ const initialEditorState = {
         __type: 'paragraph',
         __parent: 'root',
         __key: '6',
-        __children: ['7', '8', '9'],
+        __children: ['7', '24', '25', '9'],
         __format: 0,
         __indent: 0,
         __dir: 'ltr'
@@ -69,19 +69,6 @@ const initialEditorState = {
         __key: '7',
         __text: 'Replace this text with your favorite quote, and then ',
         __format: 0,
-        __style: '',
-        __mode: 0,
-        __detail: 0
-      }
-    ],
-    [
-      '8',
-      {
-        __type: 'text',
-        __parent: '6',
-        __key: '8',
-        __text: 'select portions of the text to ',
-        __format: 2,
         __style: '',
         __mode: 0,
         __detail: 0
@@ -195,6 +182,32 @@ const initialEditorState = {
         __key: '18',
         __text: 'Bold text will have a yellow highlight.',
         __format: 1,
+        __style: '',
+        __mode: 0,
+        __detail: 0
+      }
+    ],
+    [
+      '24',
+      {
+        __type: 'text',
+        __parent: '6',
+        __key: '24',
+        __text: 'select portions of the text',
+        __format: 2,
+        __style: '',
+        __mode: 0,
+        __detail: 0
+      }
+    ],
+    [
+      '25',
+      {
+        __type: 'text',
+        __parent: '6',
+        __key: '25',
+        __text: ' to ',
+        __format: 0,
         __style: '',
         __mode: 0,
         __detail: 0
