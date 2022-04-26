@@ -69,7 +69,7 @@ function RestoreFromLocalStoragePlugin() {
     (editorState: EditorState) => {
       const clone = editorState.clone()
       const editorStateJSON: any = clone.toJSON()
-      console.log(JSON.stringify(editorStateJSON))
+      // console.log(JSON.stringify(editorStateJSON))
       delete editorStateJSON._selection
       setSerializedEditorState(JSON.stringify(editorStateJSON))
     },
