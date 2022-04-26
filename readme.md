@@ -27,15 +27,43 @@ Another trait, it took me a while to notice. I noticed the following facts about
 
 ## Examples
 
-![](https://user-images.githubusercontent.com/552829/165195353-b946163b-c08c-4442-82e0-a1cec00ca68c.png)
-[Richard Hamming](https://www.cs.virginia.edu/~robins/YouAndYourResearch.html)
+![Example kwote](https://user-images.githubusercontent.com/552829/165195353-b946163b-c08c-4442-82e0-a1cec00ca68c.png)
+By [Richard Hamming](https://www.cs.virginia.edu/~robins/YouAndYourResearch.html)
 
 ---
 
-<figure>
-  <img src="https://user-images.githubusercontent.com/552829/165195353-b946163b-c08c-4442-82e0-a1cec00ca68c.png" alt="Kwote example">
-  <figcaption><a href="https://www.cs.virginia.edu/~robins/YouAndYourResearch.html">Richard Hamming</a></figcaption>
-</figure>
+![Example kwote](https://user-images.githubusercontent.com/552829/165195907-328a0c96-c4ca-497f-9e8f-67675f1d9e4b.png)
+By [Dominik Lukeš](https://metaphorhacker.net/2021/01/the-nonsense-of-style-academic-writing-should-be-scrupulous-not-stylish/)
+
+---
+
+![Example kwote](https://user-images.githubusercontent.com/552829/165196212-ba1e03a5-f3f5-42fe-91bd-089550843d3c.png)
+By [David Foster Wallace](https://www.goodreads.com/work/quotes/7144014-although-of-course-you-end-up-becoming-yourself-a-road-trip-with-david)
+
+---
+
+![Example kwote](https://user-images.githubusercontent.com/552829/165196051-b5f1502c-8354-407f-9268-1730351345c1.png)
+By [David Foster Wallace](https://www.goodreads.com/work/quotes/7144014-although-of-course-you-end-up-becoming-yourself-a-road-trip-with-david)
+
+---
+
+![Example kwote](https://user-images.githubusercontent.com/552829/165196319-3c8b65df-6f19-4232-aceb-a1fc035507d5.png)
+By [Ava Huang](https://ava.substack.com/p/psychedelics-a-personal-take?s=r)
+
+---
+
+![Example kwote](https://user-images.githubusercontent.com/552829/165196468-83400600-2718-4eaf-bb97-9057b0513548.png)
+By [Steven Pressfield](https://stevenpressfield.com/2009/10/writing-wednesdays-2-the-most-important-writing-lession-i-ever-learned/)
+
+---
+
+![Example kwote](https://user-images.githubusercontent.com/552829/165196583-3e88d07c-6f2d-4313-9749-397b9b51223c.png)
+By [Richard Hamming](https://www.cs.virginia.edu/~robins/YouAndYourResearch.html)
+
+---
+
+![Example kwote](https://user-images.githubusercontent.com/552829/165196629-4b2bcb88-94fd-4849-8a07-5ba8e801d145.png)
+By [Richard Hamming](https://www.cs.virginia.edu/~robins/YouAndYourResearch.html)
 
 ---
 
