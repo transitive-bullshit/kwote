@@ -25,7 +25,7 @@
 
 ## Examples
 
-![Example kwote](https://user-images.githubusercontent.com/552829/165195353-b946163b-c08c-4442-82e0-a1cec00ca68c.png)
+![Example kwote](https://user-images.githubusercontent.com/552829/165404376-a61d2903-dd34-49b0-a72e-b50727ef7913.jpg)
 By [Richard Hamming](https://www.cs.virginia.edu/~robins/YouAndYourResearch.html)
 
 ---
@@ -35,13 +35,8 @@ By [Aza Raskin](https://uxmag.com/articles/you-are-solving-the-wrong-problem)
 
 ---
 
-![Example kwote](https://user-images.githubusercontent.com/552829/165196468-83400600-2718-4eaf-bb97-9057b0513548.png)
+![Example kwote](https://user-images.githubusercontent.com/552829/165404654-5acbf4a8-c176-4511-a5c8-f44e8eb0a9ec.jpg)
 By [Steven Pressfield](https://stevenpressfield.com/2009/10/writing-wednesdays-2-the-most-important-writing-lession-i-ever-learned/)
-
----
-
-![Example kwote](https://user-images.githubusercontent.com/552829/165196212-ba1e03a5-f3f5-42fe-91bd-089550843d3c.png)
-By [David Foster Wallace](https://www.goodreads.com/work/quotes/7144014-although-of-course-you-end-up-becoming-yourself-a-road-trip-with-david)
 
 ---
 
