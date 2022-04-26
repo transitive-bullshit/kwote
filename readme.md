@@ -36,7 +36,7 @@ By [David Foster Wallace](https://www.goodreads.com/work/quotes/7144014-although
 
 ---
 
-![Example kwote](https://user-images.githubusercontent.com/552829/165196629-4b2bcb88-94fd-4849-8a07-5ba8e801d145.png)
+![Example kwote](https://user-images.githubusercontent.com/552829/165354808-90a8e6c6-d0e6-4f0b-ba73-c4ecec9a8981.jpg)
 By [Richard Hamming](https://www.cs.virginia.edu/~robins/YouAndYourResearch.html)
 
 ---
