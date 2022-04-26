@@ -30,33 +30,55 @@ import { MIN_FRAME_WIDTH, MAX_FRAME_WIDTH } from '~/lib/config'
 
 import styles from './styles.module.css'
 
+import image00 from '/public/images/00.jpg'
+import image01 from '/public/images/01.jpg'
+import image02 from '/public/images/02.jpg'
+import image03 from '/public/images/03.jpg'
+import image04 from '/public/images/04.jpg'
+import image05 from '/public/images/05.jpg'
+import image06 from '/public/images/06.jpg'
+import image07 from '/public/images/07.jpg'
+import image08 from '/public/images/08.jpg'
+import image09 from '/public/images/09.jpg'
+import image10 from '/public/images/10.jpg'
+import image11 from '/public/images/11.jpg'
+import image12 from '/public/images/12.jpg'
+import image13 from '/public/images/13.jpg'
+import image14 from '/public/images/14.jpg'
+import image15 from '/public/images/15.jpg'
+import image16 from '/public/images/16.jpg'
+import image17 from '/public/images/17.jpg'
+import image18 from '/public/images/18.jpg'
+import image19 from '/public/images/19.jpg'
+import image20 from '/public/images/20.jpg'
+
 type BackgroundImageOption = {
   url: string
   name: string
 }
 
 const backgroundImageOptions: BackgroundImageOption[] = [
-  { url: '/images/00.jpg', name: 'Gradient 1' },
-  { url: '/images/01.jpg', name: 'Gradient 2' },
-  { url: '/images/02.jpg', name: 'Gradient 3' },
-  { url: '/images/03.jpg', name: 'Gradient 4' },
-  { url: '/images/04.jpg', name: 'Gradient 5' },
-  { url: '/images/05.jpg', name: 'Gradient 6' },
-  { url: '/images/06.jpg', name: 'Gradient 7' },
-  { url: '/images/07.jpg', name: 'Gradient 8' },
-  { url: '/images/08.jpg', name: 'Gradient 9' },
-  { url: '/images/09.jpg', name: 'Gradient 10' },
-  { url: '/images/10.jpg', name: 'Gradient 11' },
-  { url: '/images/11.jpg', name: 'Gradient 12' },
-  { url: '/images/12.jpg', name: 'Gradient 13' },
-  { url: '/images/13.jpg', name: 'Gradient 14' },
-  { url: '/images/14.jpg', name: 'Gradient 15' },
-  { url: '/images/15.jpg', name: 'Gradient 16' },
-  { url: '/images/16.jpg', name: 'Gradient 17' },
-  { url: '/images/17.jpg', name: 'Gradient 18' },
-  { url: '/images/18.jpg', name: 'Gradient 19' },
-  { url: '/images/19.jpg', name: 'Gradient 20' },
-  { url: '/images/20.jpg', name: 'Gradient 21' }
+  { url: image00.src, name: 'Gradient 1' },
+  { url: image01.src, name: 'Gradient 2' },
+  { url: image02.src, name: 'Gradient 3' },
+  { url: image03.src, name: 'Gradient 4' },
+  { url: image04.src, name: 'Gradient 5' },
+  { url: image05.src, name: 'Gradient 6' },
+  { url: image06.src, name: 'Gradient 7' },
+  { url: image07.src, name: 'Gradient 8' },
+  { url: image08.src, name: 'Gradient 9' },
+  { url: image09.src, name: 'Gradient 10' },
+  { url: image10.src, name: 'Gradient 11' },
+  { url: image11.src, name: 'Gradient 12' },
+  { url: image12.src, name: 'Gradient 13' },
+  { url: image13.src, name: 'Gradient 14' },
+  { url: image14.src, name: 'Gradient 15' },
+  { url: image15.src, name: 'Gradient 16' },
+  { url: image16.src, name: 'Gradient 17' },
+  { url: image17.src, name: 'Gradient 18' },
+  { url: image18.src, name: 'Gradient 19' },
+  { url: image19.src, name: 'Gradient 20' },
+  { url: image20.src, name: 'Gradient 21' }
 ]
 
 const fontFamilies = [
@@ -473,7 +495,6 @@ export const ControlPanel: React.FC<{ className?: string }> = ({
                 <MenuItem onClick={onClickSaveToSVG}>Save svg</MenuItem>
                 <MenuDivider />
                 <MenuItem onClick={onClickCopyAsPNG}>Copy png</MenuItem>
-                <MenuItem>Copy URL</MenuItem>
               </MenuList>
             </Portal>
           </Menu>
