@@ -3,7 +3,7 @@ const initialEditorState = {
     [
       'root',
       {
-        __children: ['3', '5', '6', '10', '12', '15', '17'],
+        __children: ['3', '5', '6', '10', '12', '15', '17', '32', '33'],
         __dir: 'ltr',
         __format: 0,
         __indent: 0,
@@ -55,7 +55,7 @@ const initialEditorState = {
         __type: 'paragraph',
         __parent: 'root',
         __key: '6',
-        __children: ['7', '24', '25', '9'],
+        __children: ['7', '24'],
         __format: 0,
         __indent: 0,
         __dir: 'ltr'
@@ -69,19 +69,6 @@ const initialEditorState = {
         __key: '7',
         __text: 'Replace this text with your favorite quote, and then ',
         __format: 0,
-        __style: '',
-        __mode: 0,
-        __detail: 0
-      }
-    ],
-    [
-      '9',
-      {
-        __type: 'text',
-        __parent: '6',
-        __key: '9',
-        __text: 'highlight.',
-        __format: 3,
         __style: '',
         __mode: 0,
         __detail: 0
@@ -193,7 +180,7 @@ const initialEditorState = {
         __type: 'text',
         __parent: '6',
         __key: '24',
-        __text: 'select portions of the text',
+        __text: 'select portions of the text to highlight.',
         __format: 2,
         __style: '',
         __mode: 0,
@@ -201,12 +188,62 @@ const initialEditorState = {
       }
     ],
     [
-      '25',
+      '32',
+      {
+        __type: 'paragraph',
+        __parent: 'root',
+        __key: '32',
+        __children: [],
+        __format: 0,
+        __indent: 0,
+        __dir: null
+      }
+    ],
+    [
+      '33',
+      {
+        __type: 'paragraph',
+        __parent: 'root',
+        __key: '33',
+        __children: ['34', '48', '49'],
+        __format: 0,
+        __indent: 0,
+        __dir: 'ltr'
+      }
+    ],
+    [
+      '34',
       {
         __type: 'text',
-        __parent: '6',
-        __key: '25',
-        __text: ' to ',
+        __parent: '33',
+        __key: '34',
+        __text: "Once you're happy with your quote, you can ",
+        __format: 0,
+        __style: '',
+        __mode: 0,
+        __detail: 0
+      }
+    ],
+    [
+      '48',
+      {
+        __type: 'text',
+        __parent: '33',
+        __key: '48',
+        __text: 'export it as a beautiful image',
+        __format: 1,
+        __style: '',
+        __mode: 0,
+        __detail: 0
+      }
+    ],
+    [
+      '49',
+      {
+        __type: 'text',
+        __parent: '33',
+        __key: '49',
+        __text: '.',
         __format: 0,
         __style: '',
         __mode: 0,
@@ -215,8 +252,8 @@ const initialEditorState = {
     ]
   ],
   _selection: {
-    anchor: { key: '18', offset: 39, type: 'text' },
-    focus: { key: '18', offset: 39, type: 'text' },
+    anchor: { key: '49', offset: 1, type: 'text' },
+    focus: { key: '49', offset: 1, type: 'text' },
     type: 'range'
   }
 }

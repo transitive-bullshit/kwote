@@ -41,7 +41,7 @@
 }
 
 .input *::selection {
-  background: rgba(45, 170, 219, 0.3);
+  background: rgba(45, 170, 219, 0.25);
 }
 
 .input p {
