@@ -1,7 +1,8 @@
 <p align="center">
   <a href="https://kwote.app">
-    <img alt="Kwote makes it easy to create beautiful images that capture your attention." src="https://user-images.githubusercontent.com/552829/165190411-d2fdd7b4-2fb5-41f4-994e-71f143f5f84d.jpg" width="828">
+    <img alt="Kwote makes it easy to create beautiful images that capture your attention." src="https://user-images.githubusercontent.com/552829/165193742-499b2a84-f0ce-485e-8472-2969fa8016b4.jpg" width="757">
   </a>
+  
 </p>
 
 <p align="center">
@@ -19,7 +20,6 @@ Another trait, it took me a while to notice. I noticed the following facts about
 
 ## TODO
 
-- add social image
 - add examples
 - fix lexical bug with newlines
 - docs
