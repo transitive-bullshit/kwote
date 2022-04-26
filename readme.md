@@ -23,33 +23,6 @@
 - Syncs state to local storage
 - Simple, free, and open source 💕
 
-## FAQ
-
-### How do I use Kwote?
-
-1. Open [kwote.app](https://kwote.app/)
-2. Replace the main text with your favorite quote
-3. Highlight any important parts of the text you want to call out
-4. Export your image 👻
-
-Note that Kwote is a webapp optimized for desktop browsers, though mobile is also supported.
-
-### How do I highlight things?
-
-Select any text you want to highlight and mark it as bold (yellow) or italic (blue) using either your standard system keyboard shortcuts or by selecting the color from the selection popup.
-
-_Italic text will have a blue highlight._ (CMD + I or Control + I)
-
-**Bold text will have a yellow highlight.** (CMD + B or Control + B)
-
-### How does Kwote work?
-
-Kwote's editor is built using the [Lexical](https://github.com/facebook/lexical) text editing framework from Facebook. We replaced the normal bold formatting with a yellow highlight and the normal italic formatting with a blue highlight ([via CSS](https://github.com/transitive-bullshit/kwote/blob/858212b8e1605dea90cba669cdedf76a1f17f39f/components/Editor/styles.module.css#L61-L77)).
-
-We use [html-to-image](https://github.com/bubkoo/html-to-image) to render the resulting image client-side via some cool [SVG magic](https://github.com/bubkoo/html-to-image#how-it-works).
-
-The webapp itself is built using [Next.js](https://nextjs.org/), [React](https://reactjs.org/), and [Vercel](https://vercel.com/).
-
 ## Examples
 
 ![Example kwote](https://user-images.githubusercontent.com/552829/165195353-b946163b-c08c-4442-82e0-a1cec00ca68c.png)
@@ -77,7 +50,38 @@ By [Richard Hamming](https://www.cs.virginia.edu/~robins/YouAndYourResearch.html
 
 ---
 
-Have a great quote you'd like to see added here? Post it on Twitter and mention me [@transitive_bs](https://twitter.com/transitive_bs).
+Have a great quote you'd like to see added here? Post your quote image on Twitter and tag me [@transitive_bs](https://twitter.com/transitive_bs).
+
+## FAQ
+
+### How do I use Kwote?
+
+1. Open [kwote.app](https://kwote.app/)
+2. Replace the main text with your favorite quote
+3. Highlight any important parts of the text you want to call out
+4. Export your image 👻
+
+Note that Kwote is a webapp optimized for desktop browsers, though mobile is also supported.
+
+### How do I highlight things?
+
+Select any text you want to highlight and mark it as bold (yellow) or italic (blue) using either your standard system keyboard shortcuts or by selecting the color from the selection popup.
+
+_Italic text will have a blue highlight._ (CMD + I or Control + I)
+
+**Bold text will have a yellow highlight.** (CMD + B or Control + B)
+
+### How does Kwote work?
+
+Kwote's editor is built using the [Lexical](https://github.com/facebook/lexical) text editing framework from Facebook. We replaced the normal bold formatting with a yellow highlight and the normal italic formatting with a blue highlight ([via CSS](https://github.com/transitive-bullshit/kwote/blob/858212b8e1605dea90cba669cdedf76a1f17f39f/components/Editor/styles.module.css#L61-L77)).
+
+We use [html-to-image](https://github.com/bubkoo/html-to-image) to render the resulting image client-side via some cool [SVG magic](https://github.com/bubkoo/html-to-image#how-it-works).
+
+The webapp itself is built using [Next.js](https://nextjs.org/), [React](https://reactjs.org/), and [Vercel](https://vercel.com/).
+
+### How can I add a quote to this readme?
+
+Post the image on Twitter and tag me [@transitive_bs](https://twitter.com/transitive_bs). I'll retweet my favorite quotes, and if I receive enough submissions, I'll add them to a gallery on the main site.
 
 ## License
 
