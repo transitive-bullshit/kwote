@@ -9,10 +9,45 @@
   <a href="https://prettier.io"><img src="https://img.shields.io/badge/code_style-prettier-brightgreen.svg" /></a>
 </p>
 
-## TODO
+## Features
 
-- docs
-- support import / export from url
+- Easy text highlights via normal rich text formatting
+  - Yellow = Bold, Blue = Italic
+- Export to png, jpeg, svg, or copy png to clipboard
+- Supports locking the aspect ratio
+- Supports twitter aspect ratio optimization
+  - For inline images, max 2.0, min 0.75 (otherwise the image will be cropped)
+  - For social card images, preferably 2.0 or 1.91
+- Background gradient images
+- Google fonts
+- Simple, free, and open source 💕
+
+## FAQ
+
+### How do I use Kwote?
+
+Kwote is a webapp optimized for desktop browsers.
+
+1. Open [kwote.app](https://kwote.app/)
+2. Replace the main text with your favorite quote
+3. Highlight any important parts of the text you want to call out
+4. Export your image 👻
+
+### How do I highlight things?
+
+Select any text you want to highlight and mark it as bold (yellow) or italic (blue) using either your standard system keyboard shortcuts or by selecting the color from the selection popup.
+
+_Blue highlights are italic._ (CMD + I or Control + I)
+
+**Yellow highlights are bold.** (CMD + B or Control + B)
+
+### How does Kwote work?
+
+Kwote's editor is built using the [Lexical](https://github.com/facebook/lexical) text editing framework from Facebook. We replaced the normal bold formatting with a yellow highlight and the normal italic formatting with a blue highlight.
+
+We use [html-to-image](https://github.com/bubkoo/html-to-image) to render the resulting image client-side via some cool [SVG magic](https://github.com/bubkoo/html-to-image#how-it-works).
+
+The webapp itself is built using [Next.js](https://nextjs.org/), [React](https://reactjs.org/), and [Vercel](https://vercel.com/).
 
 ## Examples
 
@@ -40,6 +75,8 @@ By [David Foster Wallace](https://www.goodreads.com/work/quotes/7144014-although
 By [Richard Hamming](https://www.cs.virginia.edu/~robins/YouAndYourResearch.html)
 
 ---
+
+Have a great quote you'd like to see added here? Post it on Twitter and mention me [@transitive_bs](https://twitter.com/transitive_bs).
 
 ## License
 
