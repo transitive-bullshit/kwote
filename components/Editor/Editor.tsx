@@ -4,7 +4,6 @@ import shallow from 'zustand/shallow'
 import { useLocalStorage } from 'react-use'
 import useSize from '@react-hook/size'
 
-import { $createRangeSelection } from 'lexical'
 import type { EditorState } from 'lexical'
 import LexicalComposer from '@lexical/react/LexicalComposer'
 import RichTextPlugin from '@lexical/react/LexicalRichTextPlugin'
@@ -18,6 +17,7 @@ import { SelectionPopoverPlugin } from '~/components/SelectionPopoverPlugin/Sele
 import { GoogleFont } from '~/components/GoogleFont/GoogleFont'
 import { useEditorStore } from '~/lib/editor-store'
 import { MIN_FRAME_WIDTH, MAX_FRAME_WIDTH } from '~/lib/config'
+import initialEditorStateTutorial from './tutorial'
 
 import styles from './styles.module.css'
 
@@ -56,6 +56,11 @@ function RestoreFromLocalStoragePlugin() {
           // ignore invalid initial state
           console.warn('error restoring editor state from local storage', err)
         }
+      } else {
+        const initialEditorState = editor.parseEditorState(
+          initialEditorStateTutorial
+        )
+        editor.setEditorState(initialEditorState)
       }
     }
   }, [isFirstRender, serializedEditorState, editor])
@@ -64,6 +69,7 @@ function RestoreFromLocalStoragePlugin() {
     (editorState: EditorState) => {
       const clone = editorState.clone()
       const editorStateJSON: any = clone.toJSON()
+      // console.log(JSON.stringify(editorStateJSON))
       delete editorStateJSON._selection
       setSerializedEditorState(JSON.stringify(editorStateJSON))
     },
@@ -191,7 +197,6 @@ export const Editor: React.FC<{ className?: string }> = ({ className }) => {
               <div className={styles.body}>
                 <RichTextPlugin
                   contentEditable={<ContentEditable className={styles.input} />}
-                  // initialEditorState={initialEditorState.current}
                   placeholder={<Placeholder />}
                 />
                 <HistoryPlugin />
@@ -229,5 +234,5 @@ export const Editor: React.FC<{ className?: string }> = ({ className }) => {
 }
 
 const Placeholder: React.FC = () => {
-  return <div className={styles.placeholder}>Enter some text...</div>
+  return <div className={styles.placeholder}>Enter your quote...</div>
 }
