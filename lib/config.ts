@@ -3,7 +3,8 @@ export const isDev = environment === 'development'
 export const isServer = typeof window === 'undefined'
 
 export const title = 'Kwote'
-export const description = 'Create beautiful quotes that people will remember.'
+export const description =
+  'Kwote is a simple, free webapp which makes it easy to create beautiful quotes that capture your attention.'
 export const twitter = 'transitive_bs'
 export const domain = 'kwote.app'
 export const githubRepoUrl = 'https://github.com/transitive-bullshit/kwote'
