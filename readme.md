@@ -15,11 +15,12 @@
   - Yellow = Bold, Blue = Italic
 - Export to png, jpeg, svg, or copy png to clipboard
 - Supports locking the aspect ratio
-- Supports twitter aspect ratio optimization
-  - For inline images, max 2.0, min 0.75 (otherwise the image will be cropped)
-  - For social card images, preferably 2.0 or 1.91
+- Supports aspect ratio optimization for twitter
+  - For twitter inline images, max 2.0, min 0.75 (otherwise the image will be cropped)
+  - For twitter social card images, preferably 2.0 or 1.91
 - Background gradient images
 - Google fonts
+- Syncs state to local storage
 - Simple, free, and open source 💕
 
 ## FAQ
