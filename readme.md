@@ -38,9 +38,9 @@ Note that Kwote is a webapp optimized for desktop browsers, though mobile is als
 
 Select any text you want to highlight and mark it as bold (yellow) or italic (blue) using either your standard system keyboard shortcuts or by selecting the color from the selection popup.
 
-_Blue highlights are italic._ (CMD + I or Control + I)
+_Italic text will have a blue highlight._ (CMD + I or Control + I)
 
-**Yellow highlights are bold.** (CMD + B or Control + B)
+**Bold text will have a yellow highlight.** (CMD + B or Control + B)
 
 ### How does Kwote work?
 
