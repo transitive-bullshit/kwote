@@ -21,6 +21,11 @@ By [Richard Hamming](https://www.cs.virginia.edu/~robins/YouAndYourResearch.html
 
 ---
 
+![Example kwote](https://user-images.githubusercontent.com/552829/165353058-0dfe6761-a844-4d47-992a-21729964f06b.jpg)
+By [Aza Raskin](https://uxmag.com/articles/you-are-solving-the-wrong-problem)
+
+---
+
 ![Example kwote](https://user-images.githubusercontent.com/552829/165196468-83400600-2718-4eaf-bb97-9057b0513548.png)
 By [Steven Pressfield](https://stevenpressfield.com/2009/10/writing-wednesdays-2-the-most-important-writing-lession-i-ever-learned/)
 
