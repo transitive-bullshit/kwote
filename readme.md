@@ -1,8 +1,7 @@
 <p align="center">
   <a href="https://kwote.app">
-    <img alt="Kwote makes it easy to create beautiful images that capture your attention." src="https://user-images.githubusercontent.com/552829/165193742-499b2a84-f0ce-485e-8472-2969fa8016b4.jpg" width="757">
+    <img alt="Kwote makes it easy to create beautiful images that capture your attention." src="https://user-images.githubusercontent.com/552829/165194965-43990aa4-598e-4f0c-975f-a479bb8bfc7a.png">
   </a>
-  
 </p>
 
 <p align="center">
@@ -22,6 +21,7 @@ Another trait, it took me a while to notice. I noticed the following facts about
 
 - add examples
 - fix lexical bug with newlines
+- fix background image loading glitch
 - docs
 - support import / export from url
 
