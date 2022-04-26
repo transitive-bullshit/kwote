@@ -27,12 +27,12 @@
 
 ### How do I use Kwote?
 
-Kwote is a webapp optimized for desktop browsers (though mobile is also supported).
-
 1. Open [kwote.app](https://kwote.app/)
 2. Replace the main text with your favorite quote
 3. Highlight any important parts of the text you want to call out
 4. Export your image 👻
+
+Note that Kwote is a webapp optimized for desktop browsers, though mobile is also supported.
 
 ### How do I highlight things?
 
