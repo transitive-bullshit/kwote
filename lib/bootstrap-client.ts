@@ -1,7 +1,8 @@
 import pMap from 'p-map'
 import { backgroundImageOptions } from './background-images'
-import { isServer } from './config'
+import { isServer, isSafari } from './config'
 
+const author = 'This webapp was built by https://transitivebullsh.it'
 const banner = `
 
 ████████╗██████╗  █████╗ ███╗   ██╗███████╗██╗████████╗██╗██╗   ██╗███████╗    ██████╗ ███████╗
@@ -11,13 +12,18 @@ const banner = `
    ██║   ██║  ██║██║  ██║██║ ╚████║███████║██║   ██║   ██║ ╚████╔╝ ███████╗    ██████╔╝███████║
    ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝╚══════╝╚═╝   ╚═╝   ╚═╝  ╚═══╝  ╚══════╝    ╚═════╝ ╚══════╝
                                                                                                
-   This webapp was built by https://transitivebullsh.it
+   ${author}
 `
 
 export async function bootstrap() {
   if (isServer) return
 
-  console.log(banner)
+  if (isSafari) {
+    console.log(author)
+  } else {
+    console.log(banner)
+  }
+
   preloadBackgroundImages()
 }
 

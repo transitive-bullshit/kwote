@@ -1,6 +1,8 @@
 export const environment = process.env.NODE_ENV || 'development'
 export const isDev = environment === 'development'
 export const isServer = typeof window === 'undefined'
+export const isSafari =
+  !isServer && /^((?!chrome|android).)*safari/i.test(navigator.userAgent)
 
 export const title = 'Kwote'
 export const description =

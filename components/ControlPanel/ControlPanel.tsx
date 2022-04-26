@@ -26,7 +26,7 @@ import { ChevronDownIcon } from '@chakra-ui/icons'
 
 import { Paper } from '~/components/Paper/Paper'
 import { useEditorStore } from '~/lib/editor-store'
-import { MIN_FRAME_WIDTH, MAX_FRAME_WIDTH } from '~/lib/config'
+import { MIN_FRAME_WIDTH, MAX_FRAME_WIDTH, isSafari } from '~/lib/config'
 import {
   backgroundImageOptions,
   backgroundImageOptionsMapById,
@@ -79,10 +79,21 @@ export const ControlPanel: React.FC<{ className?: string }> = ({
       shallow
     )
 
-  const onClickSaveToPNG = React.useCallback(() => {
-    if (!editorRef) {
-      return
-    }
+  const safariWorkaroundHack = React.useCallback(async () => {
+    if (!isSafari) return
+    if (!editorRef) return
+
+    // For some reason, the first few times an image is referenced in safari,
+    // it will sometimes render blank. This should fix this issue mostly...
+    // @see https://github.com/bubkoo/html-to-image/issues/199
+    await toPng(editorRef)
+    await toPng(editorRef)
+    await toPng(editorRef)
+  }, [editorRef])
+
+  const onClickSaveToPNG = React.useCallback(async () => {
+    if (!editorRef) return
+    await safariWorkaroundHack()
 
     toPng(editorRef)
       .then((dataUrl: string) => {
@@ -96,12 +107,11 @@ export const ControlPanel: React.FC<{ className?: string }> = ({
         console.error(err)
         toast.error('Error exporting image. Check the console for details')
       })
-  }, [editorRef])
+  }, [editorRef, safariWorkaroundHack])
 
-  const onClickSaveToJPEG = React.useCallback(() => {
-    if (!editorRef) {
-      return
-    }
+  const onClickSaveToJPEG = React.useCallback(async () => {
+    if (!editorRef) return
+    await safariWorkaroundHack()
 
     toJpeg(editorRef, { quality: 0.9 })
       .then((dataUrl: string) => {
@@ -115,12 +125,11 @@ export const ControlPanel: React.FC<{ className?: string }> = ({
         console.error(err)
         toast.error('Error exporting image. Check the console for details')
       })
-  }, [editorRef])
+  }, [editorRef, safariWorkaroundHack])
 
-  const onClickSaveToSVG = React.useCallback(() => {
-    if (!editorRef) {
-      return
-    }
+  const onClickSaveToSVG = React.useCallback(async () => {
+    if (!editorRef) return
+    await safariWorkaroundHack()
 
     toSvg(editorRef)
       .then((dataUrl: string) => {
@@ -134,12 +143,11 @@ export const ControlPanel: React.FC<{ className?: string }> = ({
         console.error(err)
         toast.error('Error exporting image. Check the console for details')
       })
-  }, [editorRef])
+  }, [editorRef, safariWorkaroundHack])
 
   const onClickCopyAsPNG = React.useCallback(async () => {
-    if (!editorRef) {
-      return
-    }
+    if (!editorRef) return
+    await safariWorkaroundHack()
 
     toBlob(editorRef)
       .then((blob: Blob | null) => {
@@ -166,7 +174,7 @@ export const ControlPanel: React.FC<{ className?: string }> = ({
         console.error(err)
         toast.error('Error exporting image. Check the console for details')
       })
-  }, [editorRef])
+  }, [editorRef, safariWorkaroundHack])
 
   const [isResizing, setIsResizing] = React.useState(false)
   const numResizeSteps = React.useRef(0)
