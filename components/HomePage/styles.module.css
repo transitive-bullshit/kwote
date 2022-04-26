@@ -7,7 +7,7 @@
   min-height: 100vh;
   padding: 12px;
   gap: 24px;
-  background: #2f3437;
+  background: var(--bg-color);
 }
 
 .main {

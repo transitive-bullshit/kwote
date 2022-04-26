@@ -7,10 +7,15 @@ a {
   text-decoration: none;
 }
 
+:root {
+  --bg-color: #2f3437;
+}
+
 body,
 html {
   padding: 0;
   margin: 0;
+  background: var(--bg-color);
 }
 
 body {
