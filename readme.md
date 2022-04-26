@@ -25,6 +25,20 @@ Another trait, it took me a while to notice. I noticed the following facts about
 - docs
 - support import / export from url
 
+## Examples
+
+![](https://user-images.githubusercontent.com/552829/165195353-b946163b-c08c-4442-82e0-a1cec00ca68c.png)
+[Richard Hamming](https://www.cs.virginia.edu/~robins/YouAndYourResearch.html)
+
+---
+
+<figure>
+  <img src="https://user-images.githubusercontent.com/552829/165195353-b946163b-c08c-4442-82e0-a1cec00ca68c.png" alt="Kwote example">
+  <figcaption><a href="https://www.cs.virginia.edu/~robins/YouAndYourResearch.html">Richard Hamming</a></figcaption>
+</figure>
+
+---
+
 ## License
 
 MIT © [Travis Fischer](https://transitivebullsh.it)
