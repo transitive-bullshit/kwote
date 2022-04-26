@@ -57,6 +57,9 @@ type BackgroundImageOption = {
   name: string
 }
 
+// TODO: are these image imports persistent across deploys and next.js versions?
+// otherwise, we should use a different URL or key to identify them
+
 const backgroundImageOptions: BackgroundImageOption[] = [
   { url: image00.src, name: 'Gradient 1' },
   { url: image01.src, name: 'Gradient 2' },

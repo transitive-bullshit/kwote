@@ -45,8 +45,12 @@
 }
 
 .input p {
-  all: unset;
-  margin: 0 0 1em;
+  position: relative;
+  margin: 0 0 0.2em;
+}
+
+.input p:last-child {
+  margin-bottom: 0;
 }
 
 .input span {

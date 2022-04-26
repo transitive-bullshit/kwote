@@ -11,7 +11,6 @@
 
 ## TODO
 
-- fix lexical bug with newlines
 - fix background image loading glitch
 - docs
 - support import / export from url
