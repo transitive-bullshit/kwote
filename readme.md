@@ -11,7 +11,6 @@
 
 ## TODO
 
-- fix background image loading glitch
 - docs
 - support import / export from url
 

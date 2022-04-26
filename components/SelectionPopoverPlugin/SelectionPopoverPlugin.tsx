@@ -122,10 +122,10 @@ function FloatingSelectionPopover({
     )
   }, [editor, updatePopover])
 
-  const [isFirstRender, setIsFirstRender] = useState(true)
+  const isFirstRender = React.useRef(true)
   useLayoutEffect(() => {
-    if (isFirstRender) {
-      setIsFirstRender(false)
+    if (isFirstRender.current) {
+      isFirstRender.current = false
       const editorState = editor.getEditorState()
       editorState.read(() => {
         updatePopover()

@@ -4,6 +4,7 @@ import shallow from 'zustand/shallow'
 import { useLocalStorage } from 'react-use'
 import useSize from '@react-hook/size'
 
+import { $createRangeSelection } from 'lexical'
 import type { EditorState } from 'lexical'
 import LexicalComposer from '@lexical/react/LexicalComposer'
 import RichTextPlugin from '@lexical/react/LexicalRichTextPlugin'
@@ -32,24 +33,39 @@ function RestoreFromLocalStoragePlugin() {
   const [serializedEditorState, setSerializedEditorState] = useLocalStorage<
     string | null
   >('kwote-editor-state', null)
-  const [isFirstRender, setIsFirstRender] = React.useState(true)
+  const isFirstRender = React.useRef(true)
 
   React.useEffect(() => {
-    if (isFirstRender) {
-      setIsFirstRender(false)
+    if (isFirstRender.current) {
+      isFirstRender.current = false
 
       if (serializedEditorState) {
-        const initialEditorState = editor.parseEditorState(
-          serializedEditorState
-        )
-        editor.setEditorState(initialEditorState)
+        try {
+          // restore editor state but ignore the selection
+          const tempEditorState = JSON.parse(serializedEditorState)
+          tempEditorState._selection = editor
+            .getEditorState()
+            .clone()._selection
+          const dummySerializedEditorState = JSON.stringify(tempEditorState)
+
+          const initialEditorState = editor.parseEditorState(
+            dummySerializedEditorState
+          )
+          editor.setEditorState(initialEditorState)
+        } catch (err) {
+          // ignore invalid initial state
+          console.warn('error restoring editor state from local storage', err)
+        }
       }
     }
   }, [isFirstRender, serializedEditorState, editor])
 
   const onChange = React.useCallback(
     (editorState: EditorState) => {
-      setSerializedEditorState(JSON.stringify(editorState.toJSON()))
+      const clone = editorState.clone()
+      const editorStateJSON: any = clone.toJSON()
+      delete editorStateJSON._selection
+      setSerializedEditorState(JSON.stringify(editorStateJSON))
     },
     [setSerializedEditorState]
   )
