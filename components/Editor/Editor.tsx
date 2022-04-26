@@ -75,10 +75,13 @@ export const Editor: React.FC<{ className?: string }> = ({ className }) => {
       kwoteEditorConfig
 
     const props: React.CSSProperties = {
-      backgroundImage: `url('${background}')`,
       fontFamily: `"${fontFamily}", ui-sans-serif, system-ui, sans-serif`,
       fontSize: `${fontSize}px`,
       padding: `${padding}px`
+    }
+
+    if (background) {
+      props.backgroundImage = `url('${background}')`
     }
 
     if (width !== 'auto') {

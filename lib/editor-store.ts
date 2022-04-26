@@ -2,6 +2,7 @@ import create from 'zustand'
 import { persist } from 'zustand/middleware'
 
 import { KwoteEditorConfig } from './types'
+import { backgroundImageOptions } from './background-images'
 
 interface EditorStore {
   config: KwoteEditorConfig
@@ -14,7 +15,7 @@ interface EditorStore {
 }
 
 const defaultConfig: KwoteEditorConfig = {
-  background: '/images/00.jpg',
+  background: backgroundImageOptions[0].src,
   fontFamily: 'Inter',
   fontSize: 16,
   padding: 32,
