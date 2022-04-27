@@ -25,7 +25,7 @@
 
 ## Examples
 
-![Example kwote](https://user-images.githubusercontent.com/552829/165404376-a61d2903-dd34-49b0-a72e-b50727ef7913.jpg)
+![Example kwote](https://user-images.githubusercontent.com/552829/165413849-a2eb4c22-c014-499d-a547-90eb35e0355a.jpg)
 By [Richard Hamming](https://www.cs.virginia.edu/~robins/YouAndYourResearch.html)
 
 ---
@@ -53,7 +53,7 @@ Have a great quote you'd like to see added here? Post your quote image on Twitte
 
 1. Open [kwote.app](https://kwote.app/)
 2. Replace the main text with your favorite quote
-3. Highlight any important parts of the text you want to call out
+3. Highlight any important parts of the text that you want to call out
 4. Export your image 👻
 
 Note that Kwote is a webapp optimized for desktop browsers, though mobile is also supported.
