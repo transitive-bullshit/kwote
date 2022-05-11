@@ -1,5 +1,7 @@
 import * as React from 'react'
 
+import { copyright, twitter, githubRepoUrl } from '~/lib/config'
+
 import styles from './styles.module.css'
 
 export const Footer: React.FC = () => {
@@ -11,7 +13,7 @@ export const Footer: React.FC = () => {
           target='_blank'
           rel='noopener noreferrer'
         >
-          Copyright 2022 Travis Fischer
+          {copyright}
         </a>
       </div>
 
@@ -19,7 +21,7 @@ export const Footer: React.FC = () => {
         <a
           className={styles.twitter}
           href='https://twitter.com/transitive_bs'
-          title='Twitter transitive_bs'
+          title={`Twitter ${twitter}`}
           target='_blank'
           rel='noopener noreferrer'
         >
@@ -30,7 +32,7 @@ export const Footer: React.FC = () => {
 
         <a
           className={styles.github}
-          href='https://github.com/transitive-bullshit/kwote'
+          href={githubRepoUrl}
           title='View source on GitHub'
           target='_blank'
           rel='noopener noreferrer'
