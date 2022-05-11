@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/transitive-bullshit/nextjs-notion-starter-kit/actions/workflows/build.yml"><img src="https://github.com/transitive-bullshit/nextjs-notion-starter-kit/actions/workflows/build.yml/badge.svg" /></a>
+  <a href="https://github.com/transitive-bullshit/kwote/actions/workflows/build.yml"><img src="https://github.com/transitive-bullshit/kwote/actions/workflows/build.yml/badge.svg" /></a>
   <a href="https://prettier.io"><img src="https://img.shields.io/badge/code_style-prettier-brightgreen.svg" /></a>
 </p>
 
