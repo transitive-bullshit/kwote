@@ -10,7 +10,7 @@ export const description =
 export const author = 'Travis Fischer'
 export const twitter = 'transitive_bs'
 export const domain = 'kwote.app'
-export const githubRepoUrl = 'https://github.com/transitive-bullshit/micro-saas'
+export const githubRepoUrl = 'https://github.com/transitive-bullshit/kwote'
 export const copyright = `Copyright 2022 ${author}`
 
 export const port = process.env.PORT || '3000'
