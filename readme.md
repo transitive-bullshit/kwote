@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://kwote.app">
+  <a href="https://kwote-pi.vercel.app">
     <img alt="Kwote makes it easy to create beautiful images that capture your attention." src="https://user-images.githubusercontent.com/552829/165194965-43990aa4-598e-4f0c-975f-a479bb8bfc7a.png">
   </a>
 </p>
@@ -51,7 +51,7 @@ Have a great quote you'd like to see added here? Post your quote image on Twitte
 
 ### How do I use Kwote?
 
-1. Open [kwote.app](https://kwote.app/)
+1. Open [kwote-pi.vercel.app](https://kwote-pi.vercel.app/)
 2. Replace the main text with your favorite quote
 3. Highlight any important parts of the text that you want to call out
 4. Export your image 👻

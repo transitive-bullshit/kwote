@@ -9,7 +9,7 @@ export const description =
   'Kwote is a simple, free webapp for creating beautiful quotes that capture your attention.'
 export const author = 'Travis Fischer'
 export const twitter = 'transitive_bs'
-export const domain = 'kwote.app'
+export const domain = 'kwote-pi.vercel.app'
 export const githubRepoUrl = 'https://github.com/transitive-bullshit/kwote'
 export const copyright = `Copyright 2022 ${author}`
 

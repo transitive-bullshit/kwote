@@ -5,7 +5,7 @@
   "description": "Create beautiful quotes that capture your attention.",
   "author": "Travis Fischer <travis@transitivebullsh.it>",
   "repository": "transitive-bullshit/kwote",
-  "homepage": "https://kwote.app",
+  "homepage": "https://kwote-pi.vercel.app",
   "license": "MIT",
   "engines": {
     "node": ">=12"
